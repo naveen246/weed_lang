@@ -1,0 +1,95 @@
+
+//Clear the Primary Register
+CLR D0
+
+//Negate the Primary Register
+NEG D0
+
+//Load a Constant Value to Primary Register
+MOVE #%d,D0
+
+//Load a Variable to Primary Register
+MOVE %s(PC),D0
+
+//Push Primary onto Stack
+MOVE D0,-(SP)
+
+//Add Top of Stack to Primary
+ADD (SP)+,D0
+
+//Subtract Primary from Top of Stack
+SUB (SP)+,D0
+NEG D0
+
+//Multiply Top of Stack by Primary
+MULS (SP)+,D0
+
+//Divide Top of Stack by Primary
+MOVE (SP)+,D1
+EXG D1,D0
+DIVS D1,D0
+
+//Store Primary to Variable
+LEA %s(PC),A0
+MOVE D0,(A0)
+
+//Complement the Primary Register
+NOT D0
+
+//AND Top of Stack with Primary
+AND (SP)+,D0
+
+//OR Top of Stack with Primary
+OR (SP)+,D0
+
+//XOR Top of Stack with Primary
+EOR (SP)+,D0
+
+//Compare Top of Stack with Primary
+CMP (SP)+,D0
+
+//Set D0 If Compare was =
+SEQ D0
+EXT D0
+
+//Set D0 If Compare was !=
+SNE D0
+EXT D0
+
+//Set D0 If Compare was >
+SLT D0
+EXT D0
+
+//Set D0 If Compare was <
+SGT D0
+EXT D0
+
+//Branch Unconditional
+BRA %s
+
+//Branch False
+TST D0
+BEQ %s
+
+//Set D0 If Compare was <=
+SGE D0
+EXT D0
+
+//Set D0 If Compare was >=
+SLE D0
+EXT D0
+
+//Read Variable to Primary Register
+BSR READ
+
+//Write Variable from Primary Register
+BSR WRITE
+
+
+
+
+
+
+
+
+
