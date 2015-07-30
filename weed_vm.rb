@@ -2,44 +2,49 @@
 class VM
   :state
   def initialize
-    @data_registers = { d0: nil, d1: nil, d2: nil, d3: nil }
-    @address_registers = { a0: nil, a1: nil, a2: nil, a3: nil }
-    @variables = {}
-    @stack = []
+    @reg = []
+    @acc
+    @global_vars = {}
+    @local_vars = {}
+    @fn_stack = []
+    @labels = {}
+    @program_counter
   end
 
   def run(file)
     @program = File.readlines(file)
     puts @program
-    @program.each do |line|
-      execute(line)  
-    end	
+    execute
   end
 
   def save_state
-    @stack << @variables << @address_registers << @data_registers << :state.to_s
-    puts "save_state", @stack
+    @fn_stack << @local_vars << @program_counter << :state.to_s
+    puts "save_state", @fn_stack
   end
   
-  def revert_to_previous_state
-    last_state_index = @stack.rindex(:state.to_s)
-    @stack.slice!(last_state_index..@stack.size)
-    @data_registers = @stack.pop
-    @address_registers = @stack.pop
-    @variables = @stack.pop
-    puts "revert_to_previous_state", @stack
+  def pop_fn_stack
+    last_state_index = @fn_stack.rindex(:state.to_s)
+    @fn_stack.slice!(last_state_index..@fn_stack.size)
+    @program_counter = @fn_stack.pop
+    @local_vars = @fn_stack.pop
+    puts "pop_fn_stack", @fn_stack
   end
 
-  def execute(line)
-      
+  def execute
+    get_labels
+    puts @labels   
   end
 
-  def clear(register)
-    @data_registers[register.downcase.to_sym] = nil
+  def get_labels
+    @program.each_with_index do |line, index|
+      if line.include? ":"
+        @labels[line.tr(':', '').strip] = index + 1
+      end
+    end
   end
 
-  def move(source, destination)
-    @data_registers[reg.downcase.to_sym] = data
+  def move(source, var)
+    @variables[var] = source
   end
 
 end
