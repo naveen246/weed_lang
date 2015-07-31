@@ -1,8 +1,9 @@
 require 'bigdecimal'
+require_relative 'log'
 
 class VM
   :state
-  acc = "@ACC"
+  ACC = "@ACC"
   def initialize
     @reg = {}
     @global_vars = {}
@@ -10,35 +11,7 @@ class VM
     @stack = []
     @labels = {}
     @program_counter
-  end
-
-  def run(file)
-    @program = File.readlines(file)
-    get_labels
-    puts @labels
-    @program_counter = @labels["DEF_MAIN"]
-    execute
-  end
-
-  def save_state
-    @stack << @local_vars << @program_counter << :state.to_s
-    puts "save_state", @stack
-  end
-  
-  def pop_stack
-    last_state_index = @stack.rindex(:state.to_s)
-    @stack.slice!(last_state_index..@stack.size)
-    @program_counter = @stack.pop
-    @local_vars = @stack.pop
-    puts "pop_stack", @stack
-  end
-
-  def execute
-    instr = @program[@program_counter]
-    while !instr.include? "END"
-      parse_and_exec(instr)
-      instr = @program[@program_counter]
-    end
+    @log = Log.new
   end
 
   def get_labels
@@ -49,31 +22,59 @@ class VM
     end
   end
 
-  def get_val(str)
-    
+  def get_next_instruction
+    instr = @program[@program_counter]
+    if instr.include? ":"
+      @program_counter += 1
+      return get_next_instruction
+    elsif instr.include? "END"
+      return nil
+    else
+      return instr
+    end
+  end
+
+  def run(file)
+    @program = File.readlines(file)
+    get_labels
+    @log.write(@labels)
+    @program_counter = @labels["DEF_MAIN"]
+    execute
+  end
+
+  def execute
+    @log.write("execute")
+    instr = get_next_instruction
+    while instr.to_s != ''
+      parse_and_exec(instr)
+      instr = get_next_instruction
+    end
   end  
 
   def parse_and_exec(instr)
-    instr_set = ["CMP", "JIF", "MOV", "RET", "MUL", "DIV", "MOD", "ADD", "SUB", "POW" "JMP", "READ_STR", 
+    @log.write("parse_and_exec " + instr)
+    instr_set = ["CMP", "JIF", "MOV", "RET", "MUL", "DIV", "MOD", "ADD", "SUB", "POW", "JMP", "READ_STR", 
       "READ_NUM", "WRITE"]
     instr_set.each do |item|
-    if instr.include? item
-      instr.slice!(item).strip!
-      params = instr.split(',').map(&:strip)
-      send(item.downcase, params) 
-    end    
+      if instr.include? item
+        @log.write(item)
+        instr.slice!(item).strip!
+        params = instr.split(',').map(&:strip)
+        send(item.downcase, params) 
+      end
+    end  
   end
 
   def cmp(params)
     first_val = get_val(params[0])
     second_val = get_val(params[1])
-    @reg[acc] = eval("#{first_val} #{params[2]} #{second_val}")
+    @reg[ACC] = eval("#{first_val} #{params[2]} #{second_val}")
     @program_counter += 1
   end
 
   #jump if false
   def jif(params)
-    if @reg[acc]
+    if @reg[ACC]
       @program_counter = @labels[params[0]]
     else
       @program_counter += 1
@@ -81,7 +82,14 @@ class VM
   end
 
   def mov(params)
-    
+    value = get_val(params[0])
+    destn = params[1]
+    if destn.include? "@"
+      @reg[destn] = value
+    else
+      @local_vars[destn] = value
+    end
+    @program_counter += 1
   end
 
   def ret(params)
@@ -89,32 +97,32 @@ class VM
   end
 
   def mul(params)
-    @reg[acc] = params[0] * params[1]
+    @reg[ACC] = params[0] * params[1]
     @program_counter += 1
   end
 
   def div(params)
-    @reg[acc] = params[0] / params[1]
+    @reg[ACC] = params[0] / params[1]
     @program_counter += 1
   end
 
   def mod(params)
-    @reg[acc] = params[0] % params[1]
+    @reg[ACC] = params[0] % params[1]
     @program_counter += 1
   end
 
   def add(params)
-    @reg[acc] = params[0] + params[1]
+    @reg[ACC] = params[0] + params[1]
     @program_counter += 1
   end
 
   def sub(params)
-    @reg[acc] = params[0] - params[1]
+    @reg[ACC] = params[0] - params[1]
     @program_counter += 1
   end
 
   def pow(params)
-    @reg[acc] = params[0] ** params[1]
+    @reg[ACC] = params[0] ** params[1]
     @program_counter += 1
   end
 
@@ -125,14 +133,18 @@ class VM
 
   def read_str(params)
     @local_vars[params[0]] = STDIN.gets.chomp
+    @program_counter += 1
   end
 
   def read_num(params)
     value = STDIN.gets.chomp
     @local_vars[params[0]] = to_numeric(value)
+    @program_counter += 1
+  end
 
   def write(params)
     puts params[0]
+    @program_counter += 1
   end
 
   def to_numeric(val)
@@ -143,5 +155,28 @@ class VM
       num.to_f
     end
   end
-end
 
+  def get_val(str)
+    if str.include? "@"
+      return @reg[str]
+    elsif str.include? "#"
+      str.slice! "#"
+      return str  
+    else
+      return @local_vars[str]
+    end
+  end
+
+  def save_state
+    @stack << @local_vars << @program_counter + 1 << :state.to_s
+    @log.write("save_state " + @stack.to_s)
+  end
+  
+  def pop_stack
+    last_state_index = @stack.rindex(:state.to_s)
+    @stack.slice!(last_state_index..@stack.size)
+    @program_counter = @stack.pop
+    @local_vars = @stack.pop
+    @log.write("pop_stack " + @stack.to_s)
+  end
+end
