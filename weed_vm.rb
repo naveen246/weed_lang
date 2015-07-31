@@ -58,8 +58,9 @@ class VM
     instr_set.each do |item|
       if instr.include? item
         @log.write(item)
-        instr.slice!(item).strip!
-        params = instr.split(',').map(&:strip)
+        params_str = instr.dup
+        params_str.slice!(item).strip!
+        params = params_str.split(',').map(&:strip)
         send(item.downcase, params) 
       end
     end  
@@ -69,15 +70,17 @@ class VM
     first_val = get_val(params[0])
     second_val = get_val(params[1])
     @reg[ACC] = eval("#{first_val} #{params[2]} #{second_val}")
+    @log.write("cmp #{first_val} #{params[2]} #{second_val}")
+    @log.write(@reg[ACC])
     @program_counter += 1
   end
 
   #jump if false
   def jif(params)
     if @reg[ACC]
-      @program_counter = @labels[params[0]]
-    else
       @program_counter += 1
+    else
+      @program_counter = @labels[params[0]]
     end  
   end
 
@@ -96,34 +99,33 @@ class VM
     pop_stack
   end
 
-  def mul(params)
-    @reg[ACC] = params[0] * params[1]
+  def math_op(params, op)
+    @reg[ACC] = eval("#{get_num_val(params[0])} #{op} #{get_num_val(params[1])}")
     @program_counter += 1
+  end
+
+  def mul(params)
+    math_op(params, "*")
   end
 
   def div(params)
-    @reg[ACC] = params[0] / params[1]
-    @program_counter += 1
+    math_op(params, "/")
   end
 
   def mod(params)
-    @reg[ACC] = params[0] % params[1]
-    @program_counter += 1
+    math_op(params, "%")
   end
 
   def add(params)
-    @reg[ACC] = params[0] + params[1]
-    @program_counter += 1
+    math_op(params, "+")
   end
 
   def sub(params)
-    @reg[ACC] = params[0] - params[1]
-    @program_counter += 1
+    math_op(params, "-")
   end
 
   def pow(params)
-    @reg[ACC] = params[0] ** params[1]
-    @program_counter += 1
+    math_op(params, "**")
   end
 
   def jmp(params)
@@ -138,16 +140,16 @@ class VM
 
   def read_num(params)
     value = STDIN.gets.chomp
-    @local_vars[params[0]] = to_numeric(value)
+    @local_vars[params[0]] = to_num(value)
     @program_counter += 1
   end
 
   def write(params)
-    puts params[0]
+    puts get_val(params[0])
     @program_counter += 1
   end
 
-  def to_numeric(val)
+  def to_num(val)
     num = BigDecimal.new(val.to_s)
     if num.frac == 0
       num.to_i
@@ -165,6 +167,10 @@ class VM
     else
       return @local_vars[str]
     end
+  end
+
+  def get_num_val(str)
+    to_num(get_val(str))
   end
 
   def save_state
