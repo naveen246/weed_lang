@@ -77,21 +77,13 @@ class VM
 
   #jump if false
   def jif(params)
-    if @reg[ACC]
-      @program_counter += 1
-    else
-      @program_counter = @labels[params[0]]
-    end  
+    @reg[ACC] ? @program_counter += 1 : @program_counter = @labels[params[0]]
   end
 
   def mov(params)
     value = get_val(params[0])
     destn = params[1]
-    if destn.include? "@"
-      @reg[destn] = value
-    else
-      @local_vars[destn] = value
-    end
+    destn.include?("@") ? @reg[destn] = value : @local_vars[destn] = value
     @program_counter += 1
   end
 
@@ -156,11 +148,7 @@ class VM
 
   def to_num(val)
     num = BigDecimal.new(val.to_s)
-    if num.frac == 0
-      num.to_i
-    else
-      num.to_f
-    end
+    num.frac == 0 ? num.to_i : num.to_f
   end
 
   def get_val(str)
