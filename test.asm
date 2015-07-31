@@ -13,6 +13,7 @@ L2:
 	MOV ACC, F
 	SUB I, #1
 	MOV ACC, I
+	JMP L2
 L3:
 	MOV F, R0
 	RET
@@ -21,3 +22,4 @@ MAIN:
 	MOV N, R0
 	JMP FACT
 	WRITE R0
+	END

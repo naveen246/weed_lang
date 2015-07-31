@@ -13,7 +13,9 @@ class VM
 
   def run(file)
     @program = File.readlines(file)
-    puts @program
+    get_labels
+    puts @labels
+    @program_counter = @labels["MAIN"]
     execute
   end
 
@@ -31,8 +33,10 @@ class VM
   end
 
   def execute
-    get_labels
-    puts @labels   
+    instr = @program[@program_counter]
+    return if instr.include? "END"
+    parse_and_exec(instr)
+    execute    
   end
 
   def get_labels
@@ -43,9 +47,8 @@ class VM
     end
   end
 
-  def move(source, var)
-    @variables[var] = source
+  def parse_and_exec(instr)
+    
   end
-
 end
 
