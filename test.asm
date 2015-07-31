@@ -1,25 +1,25 @@
-FACT:
-	CMP R0, #1, LTE
+DEF_FACT:
+	CMP @R0, #1, <=
 	JIF L1
-	MOV #1, R0
+	MOV #1, @R0
 	RET
 L1:
-	MOV R0, I
+	MOV @R0, I
 	MOV #1, F
 L2:
-	CMP I, 0, GT
+	CMP I, #0, >
 	JIF L3
 	MUL F, I
-	MOV ACC, F
+	MOV @ACC, F
 	SUB I, #1
-	MOV ACC, I
+	MOV @ACC, I
 	JMP L2
 L3:
-	MOV F, R0
+	MOV F, @R0
 	RET
-MAIN:
-	READ N
-	MOV N, R0
-	JMP FACT
-	WRITE R0
+DEF_MAIN:
+	READ_NUM N
+	MOV N, @R0
+	JMP DEF_FACT
+	WRITE @R0
 	END
