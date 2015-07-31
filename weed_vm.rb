@@ -39,11 +39,11 @@ class VM
     get_labels
     @log.write(@labels)
     @program_counter = @labels["DEF_MAIN"]
-    execute
+    step_through
   end
 
-  def execute
-    @log.write("execute")
+  def step_through
+    @log.write("step_through")
     instr = get_next_instruction
     while instr.to_s != ''
       parse_and_exec(instr)
