@@ -11,11 +11,10 @@ def fact(n)
   f
 end
 
-puts "enter number"
-n = gets.chomp
-puts fact(n.to_i)
+instr = "WRITE_STR Enter Number"
+item = "WRITE_STR"
 
-a = BigDecimal.new(256.to_s).frac
-puts a
-
-:@ACC
+params_str = instr.dup
+params_str.slice!(item)
+params = params_str.split(',').map(&:strip)
+puts params.to_s

@@ -26,11 +26,11 @@ class VM
     instr = @program[@program_counter]
     if instr.include? ":"
       @program_counter += 1
-      return get_next_instruction
+      get_next_instruction
     elsif instr.include? "END"
-      return nil
+      nil
     else
-      return instr
+      instr
     end
   end
 
@@ -54,12 +54,12 @@ class VM
   def parse_and_exec(instr)
     @log.write("parse_and_exec " + instr)
     instr_set = ["CMP", "JIF", "MOV", "RET", "MUL", "DIV", "MOD", "ADD", "SUB", "POW", "JMP", "READ_STR", 
-      "READ_NUM", "WRITE"]
+      "READ_NUM", "WRITE_STR", "WRITE_NUM"]
     instr_set.each do |item|
       if instr.include? item
         @log.write(item)
         params_str = instr.dup
-        params_str.slice!(item).strip!
+        params_str.slice!(item)
         params = params_str.split(',').map(&:strip)
         send(item.downcase, params) 
       end
@@ -144,7 +144,12 @@ class VM
     @program_counter += 1
   end
 
-  def write(params)
+  def write_str(params)
+    puts params[0]
+    @program_counter += 1
+  end
+
+  def write_num(params)
     puts get_val(params[0])
     @program_counter += 1
   end
@@ -160,12 +165,12 @@ class VM
 
   def get_val(str)
     if str.include? "@"
-      return @reg[str]
+      @reg[str]
     elsif str.include? "#"
       str.slice! "#"
-      return str  
+      str  
     else
-      return @local_vars[str]
+      @local_vars[str]
     end
   end
 
