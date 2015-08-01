@@ -14,7 +14,6 @@ end
 instr = "WRITE_STR Enter Number"
 item = "WRITE_STR"
 
-params_str = instr.dup
-params_str.slice!(item)
-params = params_str.split(',').map(&:strip)
-puts params.to_s
+file = "asd.wer"
+puts "asd"
+puts "wer"

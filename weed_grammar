@@ -1,0 +1,32 @@
+grammar for weed :
+
+	<program> := ( <method> )* <main>
+
+	<main> := DEF MAIN() <block> END
+	<block> := ( <statement> )*
+	<statement> := <if> | <while> | <assignment> | <method-call> | <data declaration>
+	<assignment> := <ident> = <bool-expr>
+
+	<data declaration> := <var-list>
+	<var-list> := <var> (, <var> )*
+	<var> := <ident> [ = <integer> ]
+
+	<bool-expr> := <bool-term> ( <orop> <bool-term> )*
+	<bool-term> := <not-factor> ( <andop> <not-factor> )*
+	<not-factor> := [ '!' ] <relation>
+	<relation> := <expression> [ <relop> <expression> ]
+
+	<expression> := <first term> ( <addop> <term> )*
+	<first term> := <first factor> <rest>
+	<term> := <factor> <rest>
+	<rest> := ( <mulop> <factor> )*
+	<first factor> := [ <addop> ] <factor>
+	<factor> := <var> | <number> | ( <bool-expr> )
+
+	<if> := IF <bool-expr> <block> ( [ELSIF <block>] )* [ ELSE <block>] END
+	<while> := WHILE <bool-expr> <block> ENDWHILE
+
+	<method> := DEF <method-signature> <block> END
+	<method-signature> := <ident>(<ident>*)
+
+	<method-call> := <ident>(<const>*, <ident>*)
