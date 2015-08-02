@@ -1,4 +1,15 @@
 
 def main()
-  var a = 3
+  
+  if n <= 1
+    write(1)
+  end
+
+  i = n
+  f = 1
+  while i > 1
+  	f = f * i
+  	i = i - 1
+  end
+  write(f)
 end

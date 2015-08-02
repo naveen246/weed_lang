@@ -17,7 +17,7 @@ class Parser
 
   def get_char
     @char = @program[@cur_index]
-    @log.write("#{@cur_index} #{@char}")
+    @log.write("get_char: #{@cur_index} #{@char}")
     @cur_index += 1
   end
 
@@ -27,10 +27,11 @@ class Parser
   end
 
   def expected(token)
-  	abort("#{token} expected")
+  	abort("expected #{token} ")
   end
 
   def add_entry(name, type)
+    @log.write("add_entry: #{name}, #{type}")
     abort("Duplicate identifier #{name}") if symbol_table.has_key?(name)
     symbol_table[name] = type
   end
@@ -40,12 +41,14 @@ class Parser
   end
 
   def skip_white_space
+    @log.write("skip_white_space")
     while @char =~ /\s/
       get_char
     end
   end
 
   def read_token(expected_val, regex)
+    @log.write("read_token: #{expected_val}, #{regex}")
     skip_white_space
     expected(expected_val) if !@char =~ regex
     @token = ''
@@ -53,25 +56,31 @@ class Parser
       @token << @char
       get_char 	
     end
+    @log.write_token(@token)
     skip_white_space
   end
 
   def read_name
+    @log.write("read_name")
   	read_token("Name", /\w/)
     @log.write("read_name token: #{@token}")
   end
 
   def read_number
+    @log.write("read_number")
     read_token("Number", /\d/)
   end
 
   def match_string(str)
+    @log.write("match_string #{str}")
     expected(str) if @token != str
   end
 
   def match_char(c)
+    @log.write("match_char: #{c}")
     skip_white_space
     @char == c ? get_char : expected(c)
+    @log.write("match_char: #{c} - matched")
   end  
 
   def is_letter?(lookAhead)
@@ -95,52 +104,56 @@ class Parser
     ops.include? c
   end
 
-  def match_relational_ops(op)
-    op.each { |item| match_char(item) }
+  def match_relational_ops()
+    @log.write("match_relational_ops")
+    match_char('=')
     expression
-    code_gen.compare
+    @code_gen.compare
   end
 
   def equals
-    match_relational_ops(['=', '='])
+    match_relational_ops()
   end
 
   def not_equals
-    match_relational_ops(['!', '='])
+    match_relational_ops()
   end
 
   def less_or_equal
-    match_relational_ops(['<', '='])
+    match_relational_ops()
   end 
 
   def greater_or_equal
-    match_relational_ops(['>', '='])
+    match_relational_ops()
   end
 
   def less
+    @log.write("less")
     match_char('<')
     if @char == "="
       less_or_equal
     else
       expression
-      code_gen.compare
+      @code_gen.compare
     end
   end
 
   def greater
+    @log.write("greater")
     match_char('>')
     if @char == "="
       greater_or_equal
     else
       expression
-      code_gen.compare
+      @code_gen.compare
     end
   end
 
   def relation
+    @log.write("relation")
     expression
     while is_rel_op?(@char)
-      code_gen.push
+      @code_gen.push
       case @char
       when '=' then equals
       when '!' then not_equals
@@ -151,42 +164,47 @@ class Parser
   end
 
   def not_factor
+    @log.write("not_factor")
     if @char == '!'
       match_char('!')
       relation
-      code_gen.not_it
+      @code_gen.not_it
     else
       relation
     end
   end
 
   def bool_term
+    @log.write("bool_term")
     not_factor
     while @char == '&'
-      code_gen.push
+      @code_gen.push
       match_char('&')
       match_char('&')
       not_factor
-      code_gen.pop_and
+      @code_gen.pop_and
     end
   end
 
   def bool_or
+    @log.write("bool_or")
     match_char('|')
     match_char('|')
     bool_term
-    code_gen.pop_or
+    @code_gen.pop_or
   end
 
   def bool_expression
+    @log.write("bool_expression")
   	bool_term
     while @char == '|'
-      code_gen.push
+      @code_gen.push
       bool_or
     end
   end
 
-  def alloc()
+  def alloc
+    @log.write("alloc")
     add_entry(@token, 'v')
     if @char == '=='
       match_char('=')
@@ -197,6 +215,7 @@ class Parser
   end
 
   def data_decl
+    @log.write("data_decl")
     read_name
     alloc
     while @char == ','
@@ -207,31 +226,35 @@ class Parser
   end
 
   def factor
+    @log.write("factor")
+    skip_white_space
     if @char == '('
       match_char('(')
       bool_expression
       match_char(')')
     elsif is_numeric? @char
       read_number
-      code_gen.load_const(@token)
+      @code_gen.load_const(@token)
     else
       read_name
-      code_gen.load_var(@token)
+      @code_gen.load_var(@token)
     end
   end
 
   def neg_factor
+    @log.write("neg_factor")
     match_char('-')
     if is_numeric? @char
       read_number
-      code_gen.load_const(@token)
+      @code_gen.load_const(@token)
     else
       factor
     end
-    code_gen.negate
+    @code_gen.negate
   end
 
   def first_factor
+    @log.write("first_factor")
     if is_add_op? @char
       if @char == '+'
         match_char('+')
@@ -245,20 +268,23 @@ class Parser
   end
 
   def multiply
+    @log.write("multiply")
     match_char('*')
     factor
-    code_gen.pop_mul
+    @code_gen.pop_mul
   end
 
   def divide
+    @log.write("divide")
     match_char('/')
     factor
-    code_gen.pop_div
+    @code_gen.pop_div
   end
 
   def next_term
+    @log.write("next_term")
     while is_mul_op? @char
-      code_gen.push
+      @code_gen.push
       if @char == '*' then multiply
       elsif  @char == '/' then divide
       end      
@@ -266,31 +292,36 @@ class Parser
   end
 
   def term
+    @log.write("term")
     factor
     next_term
   end
 
   def first_term
+    @log.write("first_term")
     first_factor
     next_term
   end
 
   def add
+    @log.write("add")
     match_char('+')
     factor
-    code_gen.pop_add
+    @code_gen.pop_add
   end
 
   def subtract
+    @log.write("subtract")
     match_char('-')
     factor
-    code_gen.pop_sub
+    @code_gen.pop_sub
   end
 
   def expression
+    @log.write("expression")
     first_term
     while is_add_op? @char
-      code_gen.push
+      @code_gen.push
       if @char == '+' then add
       elsif  @char == '-' then subtract
       end      
@@ -298,6 +329,7 @@ class Parser
   end
 
   def read_write
+    @log.write("read_write")
     match_char('(')
     yield
     while @char == ','
@@ -308,59 +340,66 @@ class Parser
   end
 
   def do_write
+    @log.write("do_write")
     read_write do
       expression
-      code_gen.write
+      @code_gen.write
     end
   end
 
   def do_read
+    @log.write("do_read")
     read_write do
       read_name
-      code_gen.read
+      @code_gen.read
     end
   end
 
   def new_label
+    @log.write("new_label")
     @labels << "L#{@labels.size}"
     @labels.last
   end
 
   def do_while
+    @log.write("do_while")
     l1 = new_label
     l2 = new_label
-    code_gen.emit_label(l1)
+    @code_gen.emit_label(l1)
     bool_expression
-    code_gen.branch_false(l2)
+    @code_gen.branch_false(l2)
     block
     match_string("end")
-    code_gen.branch(l1)
-    code_gen.emit_label(l2)
+    @code_gen.branch(l1)
+    @code_gen.emit_label(l2)
   end
 
   def do_if
+    @log.write("do_if")
     l1 = new_label
     l2 = l1
     bool_expression
-    code_gen.branch_false(l1)
+    @code_gen.branch_false(l1)
     block
     if @token == "else"
       l2 = new_label
-      code_gen.branch(l2)
-      code_gen.emit_label(l1)
+      @code_gen.branch(l2)
+      @code_gen.emit_label(l1)
       block
     end
-    code_gen.emit_label(l2)
+    @code_gen.emit_label(l2)
     match_string("end")
   end
 
   def assignment
+    @log.write("assignment")
     match_char('=')
     bool_expression
-    code_gen.store(@token)
+    @code_gen.store(@token)
   end
 
   def block
+    @log.write("block")
     read_name
     while @token != "end" && @token != "else"
       case @token
@@ -370,6 +409,7 @@ class Parser
       when "write" then do_write
       else assignment  
       end
+      read_name
     end
   end
 

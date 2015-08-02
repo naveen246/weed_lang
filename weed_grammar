@@ -4,12 +4,10 @@ grammar for weed :
 
 	<main> := DEF MAIN() <block> END
 	<block> := ( <statement> )*
-	<statement> := <if> | <while> | <assignment> | <method-call> | <data declaration>
+	<statement> := <if> | <while> | <assignment> | <method-call>
 	<assignment> := <ident> = <bool-expr>
 
-	<data declaration> := var <var-list>
-	<var-list> := <var> (, <var> )*
-	<var> := <ident> [ = <integer> ]
+#	<var> := <ident> [ = <integer> ]
 
 	<bool-expr> := <bool-term> ( <orop> <bool-term> )*
 	<bool-term> := <not-factor> ( <andop> <not-factor> )*
@@ -21,7 +19,7 @@ grammar for weed :
 	<term> := <factor> <next-term>
 	<next-term> := ( <mulop> <factor> )*
 	<first factor> := [ <addop> ] <factor>
-	<factor> := <var> | <number> | ( <bool-expr> )
+	<factor> := <ident> | <number> | ( <bool-expr> )
 
 	<if> := IF <bool-expr> <block> [ ELSE <block>] END
 	<while> := WHILE <bool-expr> <block> END
@@ -29,4 +27,4 @@ grammar for weed :
 	<method> := DEF <method-signature> <block> END
 	<method-signature> := <ident>(<ident>*)
 
-	<method-call> := <ident>(<const>*, <ident>*)
+	<method-call> := <ident>((<const> | <ident>)*)
