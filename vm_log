@@ -1,0 +1,102 @@
+{"DEF_MAIN"=>1, "L0"=>7, "L2"=>10, "L3"=>18, "L1"=>20}
+step_through
+parse_and_exec 	MOV #5, N
+MOV
+parse_and_exec 	CMP N, #1, <=
+CMP
+cmp 5 <= 1
+false
+parse_and_exec 	JIF L0
+JIF
+parse_and_exec 	MOV N, I
+MOV
+parse_and_exec 	MOV #1, F
+MOV
+parse_and_exec 	CMP I, #0, >
+CMP
+cmp 5 > 0
+true
+parse_and_exec 	JIF L3
+JIF
+parse_and_exec 	MUL F, I
+MUL
+parse_and_exec 	MOV @ACC, F
+MOV
+parse_and_exec 	SUB I, #1
+SUB
+parse_and_exec 	MOV @ACC, I
+MOV
+parse_and_exec 	JMP L2
+JMP
+parse_and_exec 	CMP I, #0, >
+CMP
+cmp 4 > 0
+true
+parse_and_exec 	JIF L3
+JIF
+parse_and_exec 	MUL F, I
+MUL
+parse_and_exec 	MOV @ACC, F
+MOV
+parse_and_exec 	SUB I, #1
+SUB
+parse_and_exec 	MOV @ACC, I
+MOV
+parse_and_exec 	JMP L2
+JMP
+parse_and_exec 	CMP I, #0, >
+CMP
+cmp 3 > 0
+true
+parse_and_exec 	JIF L3
+JIF
+parse_and_exec 	MUL F, I
+MUL
+parse_and_exec 	MOV @ACC, F
+MOV
+parse_and_exec 	SUB I, #1
+SUB
+parse_and_exec 	MOV @ACC, I
+MOV
+parse_and_exec 	JMP L2
+JMP
+parse_and_exec 	CMP I, #0, >
+CMP
+cmp 2 > 0
+true
+parse_and_exec 	JIF L3
+JIF
+parse_and_exec 	MUL F, I
+MUL
+parse_and_exec 	MOV @ACC, F
+MOV
+parse_and_exec 	SUB I, #1
+SUB
+parse_and_exec 	MOV @ACC, I
+MOV
+parse_and_exec 	JMP L2
+JMP
+parse_and_exec 	CMP I, #0, >
+CMP
+cmp 1 > 0
+true
+parse_and_exec 	JIF L3
+JIF
+parse_and_exec 	MUL F, I
+MUL
+parse_and_exec 	MOV @ACC, F
+MOV
+parse_and_exec 	SUB I, #1
+SUB
+parse_and_exec 	MOV @ACC, I
+MOV
+parse_and_exec 	JMP L2
+JMP
+parse_and_exec 	CMP I, #0, >
+CMP
+cmp 0 > 0
+false
+parse_and_exec 	JIF L3
+JIF
+parse_and_exec 	WRITE_NUM F
+WRITE_NUM

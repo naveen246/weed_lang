@@ -19,6 +19,9 @@ class CodeGen
     File.open(@asm_file_name, "a") do |file|
       file.puts "\t#{instr}"
     end
+    File.open("parse_log", "a") do |file|
+      file.puts "\t\t\t\t\t\t\t\t#{instr}"
+    end
   end
 
   def compare(op)
@@ -109,7 +112,7 @@ class CodeGen
 
   def branch(label)
     #Branch Unconditional
-    emit_instr("BRA label")
+    emit_instr("BRA #{label}")
   end
 
   def set_equal

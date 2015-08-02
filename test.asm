@@ -1,6 +1,6 @@
 MAIN:
-	MOVE #5,D0
-	LEA 5(PC),A0
+	MOVE #4,D0
+	LEA 4(PC),A0
 	MOVE D0,(A0)
 	MOVE n(PC),D0
 	MOVE D0,-(SP)
@@ -12,7 +12,7 @@ MAIN:
 	BEQ L0
 	MOVE #1,D0
 	BSR WRITE
-	BRA label
+	BRA L1
 L0:
 	MOVE n(PC),D0
 	LEA n(PC),A0
@@ -42,7 +42,7 @@ L2:
 	NEG D0
 	LEA 1(PC),A0
 	MOVE D0,(A0)
-	BRA label
+	BRA L2
 L3:
 	MOVE f(PC),D0
 	BSR WRITE

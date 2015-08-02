@@ -426,7 +426,7 @@ class Parser
     match_string("main")
     match_char('(')
     match_char(')')
-    @code_gen.emit_label("MAIN")
+    @code_gen.emit_label("DEF_MAIN")
     block
     match_string("end")
   end
