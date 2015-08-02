@@ -11,7 +11,7 @@ class Parser
     @char
     @symbol_table = {}
     @labels = []
-    @log = Log.new("parse_log")
+    @log = Log.new("logs/parse_log")
   end
 
   def get_char

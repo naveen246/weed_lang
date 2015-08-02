@@ -1,14 +1,21 @@
-{"DEF_MAIN"=>1, "L0"=>7, "L2"=>10, "L3"=>18, "L1"=>20}
+{"DEF_FACT"=>1, "L1"=>6, "L2"=>9, "L3"=>17, "DEF_MAIN"=>20}
 step_through
-parse_and_exec 	MOV #5, N
+parse_and_exec     WRITE_STR Enter Number
+WRITE_STR
+parse_and_exec 	READ_NUM N
+READ_NUM
+parse_and_exec 	MOV N, @R0
 MOV
-parse_and_exec 	CMP N, #1, <=
+parse_and_exec 	JMP DEF_FACT
+JMP
+save_state [{"N"=>5}, 24, "state"]
+parse_and_exec 	CMP @R0, #1, <=
 CMP
 cmp 5 <= 1
 false
-parse_and_exec 	JIF L0
+parse_and_exec 	JIF L1
 JIF
-parse_and_exec 	MOV N, I
+parse_and_exec 	MOV @R0, I
 MOV
 parse_and_exec 	MOV #1, F
 MOV
@@ -98,5 +105,10 @@ cmp 0 > 0
 false
 parse_and_exec 	JIF L3
 JIF
-parse_and_exec 	WRITE_NUM F
+parse_and_exec 	MOV F, @R0
+MOV
+parse_and_exec 	RET
+RET
+pop_stack []
+parse_and_exec 	WRITE_NUM @R0
 WRITE_NUM

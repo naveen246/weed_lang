@@ -1,4 +1,4 @@
-MAIN:
+DEF_MAIN:
 	MOVE #4,D0
 	LEA 4(PC),A0
 	MOVE D0,(A0)
