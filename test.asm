@@ -1,26 +1,44 @@
-DEF_FACT:
-	CMP @R0, #1, <=
-	JIF L1
-	MOV #1, @R0
-	RET
+MAIN:
+	MOVE n(PC),D0
+	MOVE D0,-(SP)
+	MOVE #1,D0
+	CMP (SP)+,D0
+	SGE D0
+	EXT D0
+	TST D0
+	BEQ L0
+	MOVE #1,D0
+	BSR WRITE
+L0:
+	MOVE n(PC),D0
+	LEA n(PC),A0
+	MOVE D0,(A0)
+	MOVE #1,D0
+	LEA 1(PC),A0
+	MOVE D0,(A0)
 L1:
-	MOV @R0, I
-	MOV #1, F
+	MOVE i(PC),D0
+	MOVE D0,-(SP)
+	MOVE #1,D0
+	CMP (SP)+,D0
+	SLT D0
+	EXT D0
+	TST D0
+	BEQ L2
+	MOVE f(PC),D0
+	MOVE D0,-(SP)
+	MOVE i(PC),D0
+	MULS (SP)+,D0
+	LEA i(PC),A0
+	MOVE D0,(A0)
+	MOVE i(PC),D0
+	MOVE D0,-(SP)
+	MOVE #1,D0
+	SUB (SP)+,D0
+	NEG D0
+	LEA 1(PC),A0
+	MOVE D0,(A0)
+	BRA label
 L2:
-	CMP I, #0, >
-	JIF L3
-	MUL F, I
-	MOV @ACC, F
-	SUB I, #1
-	MOV @ACC, I
-	JMP L2
-L3:
-	MOV F, @R0
-	RET
-DEF_MAIN:
-    WRITE_STR Enter Number
-	READ_NUM N
-	MOV N, @R0
-	JMP DEF_FACT
-	WRITE_NUM @R0
-	END
+	MOVE f(PC),D0
+	BSR WRITE

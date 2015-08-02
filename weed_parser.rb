@@ -11,7 +11,6 @@ class Parser
     @char
     @symbol_table = {}
     @labels = []
-    @code_gen = CodeGen.new
     @log = Log.new("parse_log")
   end
 
@@ -104,29 +103,34 @@ class Parser
     ops.include? c
   end
 
-  def match_relational_ops(rel_op)
-    @log.write("match_relational_ops")
-    match_char('=')
-    expression
-    @code_gen.compare(rel_op)
-  end
-
   def equals
     match_char('=')
-    match_relational_ops("==")
+    match_char('=')
+    expression
+    @code_gen.compare("==")
+    @code_gen.set_equal
   end
 
   def not_equals
     match_char('!')
-    match_relational_ops("!=")
+    match_char('=')
+    expression
+    @code_gen.compare("!=")
+    @code_gen.set_not_equal
   end
 
   def less_or_equal
-    match_relational_ops("<=")
+    match_char('=')
+    expression
+    @code_gen.compare("<=")
+    @code_gen.set_less_or_equal
   end 
 
   def greater_or_equal
-    match_relational_ops(">=")
+    match_char('=')
+    expression
+    @code_gen.compare(">=")
+    @code_gen.set_greater_or_equal
   end
 
   def less
@@ -137,6 +141,7 @@ class Parser
     else
       expression
       @code_gen.compare("<")
+      @code_gen.set_less
     end
   end
 
@@ -148,6 +153,7 @@ class Parser
     else
       expression
       @code_gen.compare(">")
+      @code_gen.set_greater
     end
   end
 
@@ -353,7 +359,7 @@ class Parser
     @log.write("do_read")
     read_write do
       read_name
-      @code_gen.read
+      @code_gen.read(@token)
     end
   end
 
@@ -420,13 +426,14 @@ class Parser
     match_string("main")
     match_char('(')
     match_char(')')
-    code_gen.emit_label("MAIN")
+    @code_gen.emit_label("MAIN")
     block
     match_string("end")
   end
 
   def parse(file)
     @program = File.read(file)
+    @code_gen = CodeGen.new(file)
     get_char
     read_name
     main if @token == "def"
