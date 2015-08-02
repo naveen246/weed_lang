@@ -4,6 +4,7 @@ class CodeGen
   def initialize(file_name)
     file_name.gsub!(/\.\S*/, '')
     @asm_file_name = "#{file_name}.asm"
+    File.delete(@asm_file_name) if File.exist?(@asm_file_name)
   end
   
   def emit_label(label)

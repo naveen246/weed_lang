@@ -1,4 +1,7 @@
 MAIN:
+	MOVE #5,D0
+	LEA 5(PC),A0
+	MOVE D0,(A0)
 	MOVE n(PC),D0
 	MOVE D0,-(SP)
 	MOVE #1,D0
@@ -9,6 +12,7 @@ MAIN:
 	BEQ L0
 	MOVE #1,D0
 	BSR WRITE
+	BRA label
 L0:
 	MOVE n(PC),D0
 	LEA n(PC),A0
@@ -16,7 +20,7 @@ L0:
 	MOVE #1,D0
 	LEA 1(PC),A0
 	MOVE D0,(A0)
-L1:
+L2:
 	MOVE i(PC),D0
 	MOVE D0,-(SP)
 	MOVE #1,D0
@@ -24,7 +28,7 @@ L1:
 	SLT D0
 	EXT D0
 	TST D0
-	BEQ L2
+	BEQ L3
 	MOVE f(PC),D0
 	MOVE D0,-(SP)
 	MOVE i(PC),D0
@@ -39,6 +43,7 @@ L1:
 	LEA 1(PC),A0
 	MOVE D0,(A0)
 	BRA label
-L2:
+L3:
 	MOVE f(PC),D0
 	BSR WRITE
+L1:

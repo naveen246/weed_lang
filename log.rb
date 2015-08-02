@@ -2,6 +2,7 @@
 class Log
   def initialize(file_name)
   	@log = file_name
+    File.delete(@log) if File.exist?(@log)
   end
 
   def write(str)

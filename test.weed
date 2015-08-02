@@ -1,15 +1,15 @@
 
 def main()
-  
+  n = 5
   if n <= 1
     write(1)
+  else
+    i = n
+    f = 1
+    while i > 1
+      f = f * i
+      i = i - 1
+    end
+    write(f)
   end
-
-  i = n
-  f = 1
-  while i > 1
-  	f = f * i
-  	i = i - 1
-  end
-  write(f)
 end

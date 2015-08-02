@@ -1,0 +1,459 @@
+get_char: 0 
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 1 d
+get_char: 2 e
+get_char: 3 f
+get_char: 4  
+skip_white_space
+get_char: 5 m
+read_name token: def
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 6 a
+get_char: 7 i
+get_char: 8 n
+get_char: 9 (
+skip_white_space
+read_name token: main
+match_string main
+match_char: (
+skip_white_space
+get_char: 10 )
+match_char: ( - matched
+match_char: )
+skip_white_space
+get_char: 11 
+match_char: ) - matched
+block
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 12  
+get_char: 13  
+get_char: 14 n
+get_char: 15  
+skip_white_space
+get_char: 16 =
+read_name token: n
+assignment
+match_char: =
+skip_white_space
+get_char: 17  
+match_char: = - matched
+bool_expression
+bool_term
+not_factor
+relation
+expression
+first_term
+first_factor
+factor
+skip_white_space
+get_char: 18 5
+read_number
+read_token: Number, (?-mix:\d)
+skip_white_space
+get_char: 19 
+skip_white_space
+get_char: 20  
+get_char: 21  
+get_char: 22 i
+next_term
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 23 f
+get_char: 24  
+skip_white_space
+get_char: 25 n
+read_name token: if
+do_if
+new_label
+bool_expression
+bool_term
+not_factor
+relation
+expression
+first_term
+first_factor
+factor
+skip_white_space
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 26  
+skip_white_space
+get_char: 27 <
+read_name token: n
+next_term
+less
+match_char: <
+skip_white_space
+get_char: 28 =
+match_char: < - matched
+match_char: =
+skip_white_space
+get_char: 29  
+match_char: = - matched
+expression
+first_term
+first_factor
+factor
+skip_white_space
+get_char: 30 1
+read_number
+read_token: Number, (?-mix:\d)
+skip_white_space
+get_char: 31 
+skip_white_space
+get_char: 32  
+get_char: 33  
+get_char: 34  
+get_char: 35  
+get_char: 36 w
+next_term
+block
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 37 r
+get_char: 38 i
+get_char: 39 t
+get_char: 40 e
+get_char: 41 (
+skip_white_space
+read_name token: write
+do_write
+read_write
+match_char: (
+skip_white_space
+get_char: 42 1
+match_char: ( - matched
+expression
+first_term
+first_factor
+factor
+skip_white_space
+read_number
+read_token: Number, (?-mix:\d)
+skip_white_space
+get_char: 43 )
+skip_white_space
+next_term
+match_char: )
+skip_white_space
+get_char: 44 
+match_char: ) - matched
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 45  
+get_char: 46  
+get_char: 47 e
+get_char: 48 l
+get_char: 49 s
+get_char: 50 e
+get_char: 51 
+skip_white_space
+get_char: 52  
+get_char: 53  
+get_char: 54  
+get_char: 55  
+get_char: 56 i
+read_name token: else
+new_label
+block
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 57  
+skip_white_space
+get_char: 58 =
+read_name token: i
+assignment
+match_char: =
+skip_white_space
+get_char: 59  
+match_char: = - matched
+bool_expression
+bool_term
+not_factor
+relation
+expression
+first_term
+first_factor
+factor
+skip_white_space
+get_char: 60 n
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 61 
+skip_white_space
+get_char: 62  
+get_char: 63  
+get_char: 64  
+get_char: 65  
+get_char: 66 f
+read_name token: n
+next_term
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 67  
+skip_white_space
+get_char: 68 =
+read_name token: f
+assignment
+match_char: =
+skip_white_space
+get_char: 69  
+match_char: = - matched
+bool_expression
+bool_term
+not_factor
+relation
+expression
+first_term
+first_factor
+factor
+skip_white_space
+get_char: 70 1
+read_number
+read_token: Number, (?-mix:\d)
+skip_white_space
+get_char: 71 
+skip_white_space
+get_char: 72  
+get_char: 73  
+get_char: 74  
+get_char: 75  
+get_char: 76 w
+next_term
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 77 h
+get_char: 78 i
+get_char: 79 l
+get_char: 80 e
+get_char: 81  
+skip_white_space
+get_char: 82 i
+read_name token: while
+do_while
+new_label
+new_label
+bool_expression
+bool_term
+not_factor
+relation
+expression
+first_term
+first_factor
+factor
+skip_white_space
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 83  
+skip_white_space
+get_char: 84 >
+read_name token: i
+next_term
+greater
+match_char: >
+skip_white_space
+get_char: 85  
+match_char: > - matched
+expression
+first_term
+first_factor
+factor
+skip_white_space
+get_char: 86 1
+read_number
+read_token: Number, (?-mix:\d)
+skip_white_space
+get_char: 87 
+skip_white_space
+get_char: 88  
+get_char: 89  
+get_char: 90  
+get_char: 91  
+get_char: 92  
+get_char: 93  
+get_char: 94 f
+next_term
+block
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 95  
+skip_white_space
+get_char: 96 =
+read_name token: f
+assignment
+match_char: =
+skip_white_space
+get_char: 97  
+match_char: = - matched
+bool_expression
+bool_term
+not_factor
+relation
+expression
+first_term
+first_factor
+factor
+skip_white_space
+get_char: 98 f
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 99  
+skip_white_space
+get_char: 100 *
+read_name token: f
+next_term
+multiply
+match_char: *
+skip_white_space
+get_char: 101  
+match_char: * - matched
+factor
+skip_white_space
+get_char: 102 i
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 103 
+skip_white_space
+get_char: 104  
+get_char: 105  
+get_char: 106  
+get_char: 107  
+get_char: 108  
+get_char: 109  
+get_char: 110 i
+read_name token: i
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 111  
+skip_white_space
+get_char: 112 =
+read_name token: i
+assignment
+match_char: =
+skip_white_space
+get_char: 113  
+match_char: = - matched
+bool_expression
+bool_term
+not_factor
+relation
+expression
+first_term
+first_factor
+factor
+skip_white_space
+get_char: 114 i
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 115  
+skip_white_space
+get_char: 116 -
+read_name token: i
+next_term
+subtract
+match_char: -
+skip_white_space
+get_char: 117  
+match_char: - - matched
+factor
+skip_white_space
+get_char: 118 1
+read_number
+read_token: Number, (?-mix:\d)
+skip_white_space
+get_char: 119 
+skip_white_space
+get_char: 120  
+get_char: 121  
+get_char: 122  
+get_char: 123  
+get_char: 124 e
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 125 n
+get_char: 126 d
+get_char: 127 
+skip_white_space
+get_char: 128  
+get_char: 129  
+get_char: 130  
+get_char: 131  
+get_char: 132 w
+read_name token: end
+match_string end
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 133 r
+get_char: 134 i
+get_char: 135 t
+get_char: 136 e
+get_char: 137 (
+skip_white_space
+read_name token: write
+do_write
+read_write
+match_char: (
+skip_white_space
+get_char: 138 f
+match_char: ( - matched
+expression
+first_term
+first_factor
+factor
+skip_white_space
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 139 )
+skip_white_space
+read_name token: f
+next_term
+match_char: )
+skip_white_space
+get_char: 140 
+match_char: ) - matched
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 141  
+get_char: 142  
+get_char: 143 e
+get_char: 144 n
+get_char: 145 d
+get_char: 146 
+skip_white_space
+get_char: 147 e
+read_name token: end
+match_string end
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 148 n
+get_char: 149 d
+get_char: 150 
+skip_white_space
+get_char: 151 
+read_name token: end
+match_string end
