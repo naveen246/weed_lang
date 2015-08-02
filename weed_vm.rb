@@ -11,7 +11,7 @@ class VM
     @stack = []
     @labels = {}
     @program_counter
-    @log = Log.new
+    @log = Log.new("vm_log")
   end
 
   def get_labels

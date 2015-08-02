@@ -1,0 +1,114 @@
+{"DEF_FACT"=>1, "L1"=>6, "L2"=>9, "L3"=>17, "DEF_MAIN"=>20}
+step_through
+parse_and_exec     WRITE_STR Enter Number
+WRITE_STR
+parse_and_exec 	READ_NUM N
+READ_NUM
+parse_and_exec 	MOV N, @R0
+MOV
+parse_and_exec 	JMP DEF_FACT
+JMP
+save_state [{"N"=>5}, 24, "state"]
+parse_and_exec 	CMP @R0, #1, <=
+CMP
+cmp 5 <= 1
+false
+parse_and_exec 	JIF L1
+JIF
+parse_and_exec 	MOV @R0, I
+MOV
+parse_and_exec 	MOV #1, F
+MOV
+parse_and_exec 	CMP I, #0, >
+CMP
+cmp 5 > 0
+true
+parse_and_exec 	JIF L3
+JIF
+parse_and_exec 	MUL F, I
+MUL
+parse_and_exec 	MOV @ACC, F
+MOV
+parse_and_exec 	SUB I, #1
+SUB
+parse_and_exec 	MOV @ACC, I
+MOV
+parse_and_exec 	JMP L2
+JMP
+parse_and_exec 	CMP I, #0, >
+CMP
+cmp 4 > 0
+true
+parse_and_exec 	JIF L3
+JIF
+parse_and_exec 	MUL F, I
+MUL
+parse_and_exec 	MOV @ACC, F
+MOV
+parse_and_exec 	SUB I, #1
+SUB
+parse_and_exec 	MOV @ACC, I
+MOV
+parse_and_exec 	JMP L2
+JMP
+parse_and_exec 	CMP I, #0, >
+CMP
+cmp 3 > 0
+true
+parse_and_exec 	JIF L3
+JIF
+parse_and_exec 	MUL F, I
+MUL
+parse_and_exec 	MOV @ACC, F
+MOV
+parse_and_exec 	SUB I, #1
+SUB
+parse_and_exec 	MOV @ACC, I
+MOV
+parse_and_exec 	JMP L2
+JMP
+parse_and_exec 	CMP I, #0, >
+CMP
+cmp 2 > 0
+true
+parse_and_exec 	JIF L3
+JIF
+parse_and_exec 	MUL F, I
+MUL
+parse_and_exec 	MOV @ACC, F
+MOV
+parse_and_exec 	SUB I, #1
+SUB
+parse_and_exec 	MOV @ACC, I
+MOV
+parse_and_exec 	JMP L2
+JMP
+parse_and_exec 	CMP I, #0, >
+CMP
+cmp 1 > 0
+true
+parse_and_exec 	JIF L3
+JIF
+parse_and_exec 	MUL F, I
+MUL
+parse_and_exec 	MOV @ACC, F
+MOV
+parse_and_exec 	SUB I, #1
+SUB
+parse_and_exec 	MOV @ACC, I
+MOV
+parse_and_exec 	JMP L2
+JMP
+parse_and_exec 	CMP I, #0, >
+CMP
+cmp 0 > 0
+false
+parse_and_exec 	JIF L3
+JIF
+parse_and_exec 	MOV F, @R0
+MOV
+parse_and_exec 	RET
+RET
+pop_stack []
+parse_and_exec 	WRITE_NUM @R0
+WRITE_NUM
