@@ -104,27 +104,29 @@ class Parser
     ops.include? c
   end
 
-  def match_relational_ops()
+  def match_relational_ops(rel_op)
     @log.write("match_relational_ops")
     match_char('=')
     expression
-    @code_gen.compare
+    @code_gen.compare(rel_op)
   end
 
   def equals
-    match_relational_ops()
+    match_char('=')
+    match_relational_ops("==")
   end
 
   def not_equals
-    match_relational_ops()
+    match_char('!')
+    match_relational_ops("!=")
   end
 
   def less_or_equal
-    match_relational_ops()
+    match_relational_ops("<=")
   end 
 
   def greater_or_equal
-    match_relational_ops()
+    match_relational_ops(">=")
   end
 
   def less
@@ -134,7 +136,7 @@ class Parser
       less_or_equal
     else
       expression
-      @code_gen.compare
+      @code_gen.compare("<")
     end
   end
 
@@ -145,7 +147,7 @@ class Parser
       greater_or_equal
     else
       expression
-      @code_gen.compare
+      @code_gen.compare(">")
     end
   end
 
@@ -418,6 +420,7 @@ class Parser
     match_string("main")
     match_char('(')
     match_char(')')
+    code_gen.emit_label("MAIN")
     block
     match_string("end")
   end
