@@ -26,128 +26,90 @@ class CodeGen
 
   def compare(op)
     #Compare Top of Stack with Primary
-    emit_instr("CMP (SP)+,D0")
+    emit_instr("CMP (SP)+,@R0, #{op}")
   end
 
   def push
     #Push Primary onto Stack
-    emit_instr("MOVE D0,-(SP)")
+    emit_instr("MOV @R0,-(SP)")
   end
 
   def pop_and
     #AND Top of Stack with Primary
-    emit_instr("AND (SP)+,D0")
+    emit_instr("AND (SP)+,@R0")
   end
 
   def pop_or
     #OR Top of Stack with Primary
-    emit_instr("OR (SP)+,D0")
+    emit_instr("OR (SP)+,@R0")
   end
 
   def pop_mul
     #Multiply Top of Stack by Primary
-    emit_instr("MULS (SP)+,D0")
+    emit_instr("MUL (SP)+,@R0")
   end
 
   def pop_div
     #Divide Top of Stack by Primary
-    emit_instr("MOVE (SP)+,D1")
-    emit_instr("EXG D1,D0")
-    emit_instr("DIVS D1,D0")
+    emit_instr("DIV (SP)+, @R0")
   end
 
   def pop_add
     #Add Top of Stack to Primary
-    emit_instr("ADD (SP)+,D0")
+    emit_instr("ADD (SP)+,@R0")
   end
   
   def pop_sub
     #Subtract Primary from Top of Stack
-    emit_instr("SUB (SP)+,D0")
-    emit_instr("NEG D0")
+    emit_instr("SUB (SP)+,@R0")
   end
 
   def not_it
     #Complement the Primary Register
-    emit_instr("NOT D0")
+    emit_instr("NOT @R0")
   end
 
   def load_const(val)
     #Load a Constant Value to Primary Register
-    emit_instr("MOVE \##{val},D0")
+    emit_instr("MOV \##{val},@R0")
   end
 
   def load_var(var)
     #Load a Variable to Primary Register
-    emit_instr("MOVE #{var}(PC),D0")
+    emit_instr("MOV #{var},@R0")
   end
 
-  def store(val)
+  def store(var)
     #Store Primary to Variable
-    emit_instr("LEA #{val}(PC),A0")
-    emit_instr("MOVE D0,(A0)")
+    emit_instr("MOV @R0,#{var}")
   end
 
   def negate
     #Negate the Primary Register
-    emit_instr("NEG D0")
+    emit_instr("NEG @R0")
   end
 
   def write
     #Write Variable from Primary Register
-    emit_instr("BSR WRITE")
+    emit_instr("WRITE_NUM @R0")
   end
 
   def read(value)
     #Read Variable to Primary Register
-    emit_instr("BSR READ");
-    store(value);
+    emit_instr("READ_NUM #{value}")
   end
 
   def branch_false(label)
     #Branch False
-    emit_instr("TST D0")
-    emit_instr("BEQ #{label}")
+    emit_instr("JIF #{label}")
   end
 
   def branch(label)
     #Branch Unconditional
-    emit_instr("BRA #{label}")
+    emit_instr("JMP #{label}")
   end
 
-  def set_equal
-    #Set D0 If Compare was =
-    emit_instr("SEQ D0")
-    emit_instr("EXT D0")
-  end
-
-  def set_not_equal
-    #Set D0 If Compare was !=
-    emit_instr("SNE D0")
-    emit_instr("EXT D0")
-  end
-
-  def set_greater
-    #Set D0 If Compare was >
-    emit_instr("SLT D0")
-    emit_instr("EXT D0")
-  end
-
-  def set_less
-    #Set D0 If Compare was <
-    emit_instr("SGT D0")
-    emit_instr("EXT D0")
-  end
-
-  def set_less_or_equal
-    #Set D0 If Compare was <=
-    emit_instr("SGE D0")
-    emit_instr("EXT D0")
-  end
-
-  def set_greater_or_equal
-    #Set D0 If Compare was >=
-    emit_instr("SLE D0")
-    emit_instr("EXT D0")
+  def end
+    emit_instr("END")
   end
 end 

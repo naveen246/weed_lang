@@ -1,49 +1,40 @@
 DEF_MAIN:
-	MOVE #4,D0
-	LEA 4(PC),A0
-	MOVE D0,(A0)
-	MOVE n(PC),D0
-	MOVE D0,-(SP)
-	MOVE #1,D0
-	CMP (SP)+,D0
-	SGE D0
-	EXT D0
-	TST D0
-	BEQ L0
-	MOVE #1,D0
-	BSR WRITE
-	BRA L1
+	READ_NUM n
+	MOV n,@R0
+	MOV @R0,-(SP)
+	MOV #3,@R0
+	ADD (SP)+,@R0
+	MOV @R0,-(SP)
+	MOV #1,@R0
+	CMP (SP)+,@R0, <=
+	JIF L0
+	MOV #1,@R0
+	WRITE_NUM @R0
+	JMP L1
 L0:
-	MOVE n(PC),D0
-	LEA n(PC),A0
-	MOVE D0,(A0)
-	MOVE #1,D0
-	LEA 1(PC),A0
-	MOVE D0,(A0)
+	MOV n,@R0
+	MOV @R0,n
+	MOV #1,@R0
+	MOV @R0,1
 L2:
-	MOVE i(PC),D0
-	MOVE D0,-(SP)
-	MOVE #1,D0
-	CMP (SP)+,D0
-	SLT D0
-	EXT D0
-	TST D0
-	BEQ L3
-	MOVE f(PC),D0
-	MOVE D0,-(SP)
-	MOVE i(PC),D0
-	MULS (SP)+,D0
-	LEA i(PC),A0
-	MOVE D0,(A0)
-	MOVE i(PC),D0
-	MOVE D0,-(SP)
-	MOVE #1,D0
-	SUB (SP)+,D0
-	NEG D0
-	LEA 1(PC),A0
-	MOVE D0,(A0)
-	BRA L2
+	MOV i,@R0
+	MOV @R0,-(SP)
+	MOV #1,@R0
+	CMP (SP)+,@R0, >
+	JIF L3
+	MOV f,@R0
+	MOV @R0,-(SP)
+	MOV i,@R0
+	MUL (SP)+,@R0
+	MOV @R0,i
+	MOV i,@R0
+	MOV @R0,-(SP)
+	MOV #1,@R0
+	SUB (SP)+,@R0
+	MOV @R0,1
+	JMP L2
 L3:
-	MOVE f(PC),D0
-	BSR WRITE
+	MOV f,@R0
+	WRITE_NUM @R0
 L1:
+	END

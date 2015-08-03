@@ -1,0 +1,505 @@
+get_char: 0 
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 1 d
+get_char: 2 e
+get_char: 3 f
+get_char: 4  
+skip_white_space
+get_char: 5 m
+read_name token: def
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 6 a
+get_char: 7 i
+get_char: 8 n
+get_char: 9 (
+skip_white_space
+read_name token: main
+match_string main
+match_char: (
+skip_white_space
+get_char: 10 )
+match_char: ( - matched
+match_char: )
+skip_white_space
+get_char: 11 
+match_char: ) - matched
+block
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 12  
+get_char: 13  
+get_char: 14 r
+get_char: 15 e
+get_char: 16 a
+get_char: 17 d
+get_char: 18 (
+skip_white_space
+read_name token: read
+do_read
+read_write
+match_char: (
+skip_white_space
+get_char: 19 n
+match_char: ( - matched
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 20 )
+skip_white_space
+read_name token: n
+								READ_NUM n
+match_char: )
+skip_white_space
+get_char: 21 
+match_char: ) - matched
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 22  
+get_char: 23  
+get_char: 24 i
+get_char: 25 f
+get_char: 26  
+skip_white_space
+get_char: 27 n
+read_name token: if
+do_if
+new_label
+bool_expression
+bool_term
+not_factor
+relation
+expression
+first_term
+first_factor
+factor
+skip_white_space
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 28  
+skip_white_space
+get_char: 29 +
+read_name token: n
+								MOV n,@R0
+next_term
+								MOV @R0,-(SP)
+add
+match_char: +
+skip_white_space
+get_char: 30  
+match_char: + - matched
+factor
+skip_white_space
+get_char: 31 3
+read_number
+read_token: Number, (?-mix:\d)
+skip_white_space
+get_char: 32  
+skip_white_space
+get_char: 33 <
+								MOV #3,@R0
+								ADD (SP)+,@R0
+								MOV @R0,-(SP)
+less
+match_char: <
+skip_white_space
+get_char: 34 =
+match_char: < - matched
+match_char: =
+skip_white_space
+get_char: 35  
+match_char: = - matched
+expression
+first_term
+first_factor
+factor
+skip_white_space
+get_char: 36 1
+read_number
+read_token: Number, (?-mix:\d)
+skip_white_space
+get_char: 37 
+skip_white_space
+get_char: 38  
+get_char: 39  
+get_char: 40  
+get_char: 41  
+get_char: 42 w
+								MOV #1,@R0
+next_term
+								CMP (SP)+,@R0, <=
+								JIF L0
+block
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 43 r
+get_char: 44 i
+get_char: 45 t
+get_char: 46 e
+get_char: 47 (
+skip_white_space
+read_name token: write
+do_write
+read_write
+match_char: (
+skip_white_space
+get_char: 48 1
+match_char: ( - matched
+expression
+first_term
+first_factor
+factor
+skip_white_space
+read_number
+read_token: Number, (?-mix:\d)
+skip_white_space
+get_char: 49 )
+skip_white_space
+								MOV #1,@R0
+next_term
+								WRITE_NUM @R0
+match_char: )
+skip_white_space
+get_char: 50 
+match_char: ) - matched
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 51  
+get_char: 52  
+get_char: 53 e
+get_char: 54 l
+get_char: 55 s
+get_char: 56 e
+get_char: 57 
+skip_white_space
+get_char: 58  
+get_char: 59  
+get_char: 60  
+get_char: 61  
+get_char: 62 i
+read_name token: else
+new_label
+								JMP L1
+block
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 63  
+skip_white_space
+get_char: 64 =
+read_name token: i
+assignment
+match_char: =
+skip_white_space
+get_char: 65  
+match_char: = - matched
+bool_expression
+bool_term
+not_factor
+relation
+expression
+first_term
+first_factor
+factor
+skip_white_space
+get_char: 66 n
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 67 
+skip_white_space
+get_char: 68  
+get_char: 69  
+get_char: 70  
+get_char: 71  
+get_char: 72 f
+read_name token: n
+								MOV n,@R0
+next_term
+								MOV @R0,n
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 73  
+skip_white_space
+get_char: 74 =
+read_name token: f
+assignment
+match_char: =
+skip_white_space
+get_char: 75  
+match_char: = - matched
+bool_expression
+bool_term
+not_factor
+relation
+expression
+first_term
+first_factor
+factor
+skip_white_space
+get_char: 76 1
+read_number
+read_token: Number, (?-mix:\d)
+skip_white_space
+get_char: 77 
+skip_white_space
+get_char: 78  
+get_char: 79  
+get_char: 80  
+get_char: 81  
+get_char: 82 w
+								MOV #1,@R0
+next_term
+								MOV @R0,1
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 83 h
+get_char: 84 i
+get_char: 85 l
+get_char: 86 e
+get_char: 87  
+skip_white_space
+get_char: 88 i
+read_name token: while
+do_while
+new_label
+new_label
+bool_expression
+bool_term
+not_factor
+relation
+expression
+first_term
+first_factor
+factor
+skip_white_space
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 89  
+skip_white_space
+get_char: 90 >
+read_name token: i
+								MOV i,@R0
+next_term
+								MOV @R0,-(SP)
+greater
+match_char: >
+skip_white_space
+get_char: 91  
+match_char: > - matched
+expression
+first_term
+first_factor
+factor
+skip_white_space
+get_char: 92 1
+read_number
+read_token: Number, (?-mix:\d)
+skip_white_space
+get_char: 93 
+skip_white_space
+get_char: 94  
+get_char: 95  
+get_char: 96  
+get_char: 97  
+get_char: 98  
+get_char: 99  
+get_char: 100 f
+								MOV #1,@R0
+next_term
+								CMP (SP)+,@R0, >
+								JIF L3
+block
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 101  
+skip_white_space
+get_char: 102 =
+read_name token: f
+assignment
+match_char: =
+skip_white_space
+get_char: 103  
+match_char: = - matched
+bool_expression
+bool_term
+not_factor
+relation
+expression
+first_term
+first_factor
+factor
+skip_white_space
+get_char: 104 f
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 105  
+skip_white_space
+get_char: 106 *
+read_name token: f
+								MOV f,@R0
+next_term
+								MOV @R0,-(SP)
+multiply
+match_char: *
+skip_white_space
+get_char: 107  
+match_char: * - matched
+factor
+skip_white_space
+get_char: 108 i
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 109 
+skip_white_space
+get_char: 110  
+get_char: 111  
+get_char: 112  
+get_char: 113  
+get_char: 114  
+get_char: 115  
+get_char: 116 i
+read_name token: i
+								MOV i,@R0
+								MUL (SP)+,@R0
+								MOV @R0,i
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 117  
+skip_white_space
+get_char: 118 =
+read_name token: i
+assignment
+match_char: =
+skip_white_space
+get_char: 119  
+match_char: = - matched
+bool_expression
+bool_term
+not_factor
+relation
+expression
+first_term
+first_factor
+factor
+skip_white_space
+get_char: 120 i
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 121  
+skip_white_space
+get_char: 122 -
+read_name token: i
+								MOV i,@R0
+next_term
+								MOV @R0,-(SP)
+subtract
+match_char: -
+skip_white_space
+get_char: 123  
+match_char: - - matched
+factor
+skip_white_space
+get_char: 124 1
+read_number
+read_token: Number, (?-mix:\d)
+skip_white_space
+get_char: 125 
+skip_white_space
+get_char: 126  
+get_char: 127  
+get_char: 128  
+get_char: 129  
+get_char: 130 e
+								MOV #1,@R0
+								SUB (SP)+,@R0
+								MOV @R0,1
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 131 n
+get_char: 132 d
+get_char: 133 
+skip_white_space
+get_char: 134  
+get_char: 135  
+get_char: 136  
+get_char: 137  
+get_char: 138 w
+read_name token: end
+match_string end
+								JMP L2
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 139 r
+get_char: 140 i
+get_char: 141 t
+get_char: 142 e
+get_char: 143 (
+skip_white_space
+read_name token: write
+do_write
+read_write
+match_char: (
+skip_white_space
+get_char: 144 f
+match_char: ( - matched
+expression
+first_term
+first_factor
+factor
+skip_white_space
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 145 )
+skip_white_space
+read_name token: f
+								MOV f,@R0
+next_term
+								WRITE_NUM @R0
+match_char: )
+skip_white_space
+get_char: 146 
+match_char: ) - matched
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 147  
+get_char: 148  
+get_char: 149 e
+get_char: 150 n
+get_char: 151 d
+get_char: 152 
+skip_white_space
+get_char: 153 e
+read_name token: end
+match_string end
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 154 n
+get_char: 155 d
+get_char: 156 
+skip_white_space
+get_char: 157 
+read_name token: end
+match_string end
+								END

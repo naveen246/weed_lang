@@ -108,7 +108,6 @@ class Parser
     match_char('=')
     expression
     @code_gen.compare("==")
-    @code_gen.set_equal
   end
 
   def not_equals
@@ -116,21 +115,18 @@ class Parser
     match_char('=')
     expression
     @code_gen.compare("!=")
-    @code_gen.set_not_equal
   end
 
   def less_or_equal
     match_char('=')
     expression
     @code_gen.compare("<=")
-    @code_gen.set_less_or_equal
   end 
 
   def greater_or_equal
     match_char('=')
     expression
     @code_gen.compare(">=")
-    @code_gen.set_greater_or_equal
   end
 
   def less
@@ -141,7 +137,6 @@ class Parser
     else
       expression
       @code_gen.compare("<")
-      @code_gen.set_less
     end
   end
 
@@ -153,7 +148,6 @@ class Parser
     else
       expression
       @code_gen.compare(">")
-      @code_gen.set_greater
     end
   end
 
@@ -429,6 +423,7 @@ class Parser
     @code_gen.emit_label("DEF_MAIN")
     block
     match_string("end")
+    @code_gen.end
   end
 
   def parse(file)
