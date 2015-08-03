@@ -52,6 +52,10 @@ class CodeGen
     emit_instr("DIV (SP)+, @R0")
   end
 
+  def pop_mod
+    emit_instr("MOD (SP)+, @R0")
+  end
+
   def pop_add
     #Add Top of Stack to Primary
     emit_instr("ADD (SP)+,@R0")

@@ -95,7 +95,7 @@ class Parser
   end
 
   def is_mul_op?(c)
-    c == '*' || c == '/'
+    c == '*' || c == '/' || c == '%'
   end
 
   def is_rel_op?(c)
@@ -283,12 +283,20 @@ class Parser
     @code_gen.pop_div
   end
 
+  def modulus
+    @log.write("modulus")
+    match_char('%')
+    factor
+    @code_gen.pop_mod
+  end
+
   def next_term
     @log.write("next_term")
     while is_mul_op? @char
       @code_gen.push
       if @char == '*' then multiply
       elsif @char == '/' then divide
+      elsif @char == '%' then modulus
       end      
     end
   end

@@ -1,0 +1,23 @@
+
+def main()
+
+  write_str("Enter a number to check if it is a palindrome or not\n")
+  read_num(n)
+ 
+  temp = n
+  reverse = 1
+ 
+  while( temp != 0 )
+    reverse = reverse * 10
+    reverse = reverse + temp % 10
+    temp = temp/10
+  end
+ 
+  write_num(n)
+
+  if n == reverse
+    write_str(" is a palindrome number")
+  else
+    write_str(" is not a palindrome number")
+  end  
+end
