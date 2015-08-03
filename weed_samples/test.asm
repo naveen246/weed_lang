@@ -13,9 +13,9 @@ DEF_MAIN:
 	JMP L1
 L0:
 	MOV n,@R0
-	MOV @R0,n
+	MOV @R0,i
 	MOV #1,@R0
-	MOV @R0,1
+	MOV @R0,f
 L2:
 	MOV i,@R0
 	MOV @R0,-(SP)
@@ -26,12 +26,12 @@ L2:
 	MOV @R0,-(SP)
 	MOV i,@R0
 	MUL (SP)+,@R0
-	MOV @R0,i
+	MOV @R0,f
 	MOV i,@R0
 	MOV @R0,-(SP)
 	MOV #1,@R0
 	SUB (SP)+,@R0
-	MOV @R0,1
+	MOV @R0,i
 	JMP L2
 L3:
 	MOV f,@R0

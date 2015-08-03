@@ -4,7 +4,6 @@ require_relative 'code_gen'
 class Parser
   
   def initialize
-    @keywords = ["def", "if", "else", "end", "while", "read", "write", "return", "break", "continue"]
     @token
     @cur_index = 0
     @cur_keyword = nil
@@ -395,9 +394,10 @@ class Parser
 
   def assignment
     @log.write("assignment")
+    lhs = @token
     match_char('=')
     bool_expression
-    @code_gen.store(@token)
+    @code_gen.store(lhs)
   end
 
   def block

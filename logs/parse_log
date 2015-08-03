@@ -224,7 +224,7 @@ get_char: 72 f
 read_name token: n
 								MOV n,@R0
 next_term
-								MOV @R0,n
+								MOV @R0,i
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
@@ -259,7 +259,7 @@ get_char: 81
 get_char: 82 w
 								MOV #1,@R0
 next_term
-								MOV @R0,1
+								MOV @R0,f
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
@@ -376,7 +376,7 @@ get_char: 116 i
 read_name token: i
 								MOV i,@R0
 								MUL (SP)+,@R0
-								MOV @R0,i
+								MOV @R0,f
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
@@ -429,7 +429,7 @@ get_char: 129
 get_char: 130 e
 								MOV #1,@R0
 								SUB (SP)+,@R0
-								MOV @R0,1
+								MOV @R0,i
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
