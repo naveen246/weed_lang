@@ -161,7 +161,7 @@ class VM
   end
 
   def write_str(params)
-    puts params[0]
+    params.each { |item| puts item }
     @program_counter += 1
   end
 

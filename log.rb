@@ -9,7 +9,7 @@ class Log
     File.open(@log, "a") do |file|
       file.puts str
     end
-    puts str
+    #puts str
   end
 
   def write_token(str)

@@ -17,6 +17,7 @@ class Parser
     @char = @program[@cur_index]
     @log.write("get_char: #{@cur_index} #{@char}")
     @cur_index += 1
+    @char
   end
 
   def abort(msg)
@@ -340,20 +341,38 @@ class Parser
     match_char(')')
   end
 
-  def do_write
-    @log.write("do_write")
+  def do_write_num
+    @log.write("do_write_num")
     read_write do
       expression
-      @code_gen.write
+      @code_gen.write_num
     end
   end
 
-  def do_read
-    @log.write("do_read")
+  def do_read_num
+    @log.write("do_read_num")
     read_write do
       read_name
-      @code_gen.read(@token)
+      @code_gen.read_num(@token)
     end
+  end
+
+  def do_write_str
+    match_char('(')
+    match_char('"')
+    str = @char
+    while @char != '"'
+      str << get_char
+    end
+    str.gsub!('"', '')
+    @log.write(str)
+    match_char('"')
+    match_char(')')
+    @code_gen.write_str(str)
+  end
+
+  def do_read_str
+
   end
 
   def new_label
@@ -407,8 +426,10 @@ class Parser
       case @token
       when "if" then do_if
       when "while" then do_while
-      when "read" then do_read
-      when "write" then do_write
+      when "read_num" then do_read_num
+      when "read_str" then do_read_str
+      when "write_num" then do_write_num
+      when "write_str" then do_write_str
       else assignment  
       end
       read_name

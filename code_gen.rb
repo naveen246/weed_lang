@@ -8,14 +8,12 @@ class CodeGen
   end
   
   def emit_label(label)
-    puts "#{label}:"
     File.open(@asm_file_name, "a") do |file|
       file.puts "#{label}:"
     end
   end
 
   def emit_instr(instr)
-    puts "\t#{instr}"
     File.open(@asm_file_name, "a") do |file|
       file.puts "\t#{instr}"
     end
@@ -89,14 +87,22 @@ class CodeGen
     emit_instr("NEG @R0")
   end
 
-  def write
+  def write_num
     #Write Variable from Primary Register
     emit_instr("WRITE_NUM @R0")
   end
 
-  def read(value)
+  def write_str(str)
+    emit_instr("WRITE_STR #{str}")
+  end
+
+  def read_num(value)
     #Read Variable to Primary Register
     emit_instr("READ_NUM #{value}")
+  end
+
+  def read_str(value)
+    emit_instr("READ_STR #{value}")
   end
 
   def branch_false(label)

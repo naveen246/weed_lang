@@ -1,0 +1,16 @@
+
+def main()
+  write_str("Enter number ")
+  read_num(n)
+  if n <= 1
+    write_num(1)
+  else
+    i = n
+    factorial = 1
+    while i > 1
+      factorial = factorial * i
+      i = i - 1
+    end
+    write_num(factorial)
+  end  
+end

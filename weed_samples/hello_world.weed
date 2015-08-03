@@ -1,0 +1,4 @@
+
+def main()
+  write_str("Roll one, smoke one, and we all just having fun")
+end
