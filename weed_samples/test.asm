@@ -2,9 +2,6 @@ DEF_MAIN:
 	READ_NUM n
 	MOV n,@R0
 	MOV @R0,-(SP)
-	MOV #3,@R0
-	ADD (SP)+,@R0
-	MOV @R0,-(SP)
 	MOV #1,@R0
 	CMP (SP)+,@R0, <=
 	JIF L0
@@ -13,9 +10,26 @@ DEF_MAIN:
 	JMP L1
 L0:
 	MOV n,@R0
+	MOV @R0,-(SP)
+	MOV #3,@R0
+	MOV @R0,-(SP)
+	MOV #5,@R0
+	MUL (SP)+,@R0
+	ADD (SP)+,@R0
 	MOV @R0,i
-	MOV #1,@R0
+	MOV #5,@R0
+	MOV @R0,-(SP)
+	MOV #4,@R0
+	MOV @R0,-(SP)
+	MOV #5,@R0
+	MUL (SP)+,@R0
+	SUB (SP)+,@R0
 	MOV @R0,f
+	MOV #6,@R0
+	MOV @R0,-(SP)
+	MOV #3,@R0
+	DIV (SP)+, @R0
+	MOV @R0,k
 L2:
 	MOV i,@R0
 	MOV @R0,-(SP)

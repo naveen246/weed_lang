@@ -287,7 +287,7 @@ class Parser
     while is_mul_op? @char
       @code_gen.push
       if @char == '*' then multiply
-      elsif  @char == '/' then divide
+      elsif @char == '/' then divide
       end      
     end
   end
@@ -307,14 +307,14 @@ class Parser
   def add
     @log.write("add")
     match_char('+')
-    factor
+    term
     @code_gen.pop_add
   end
 
   def subtract
     @log.write("subtract")
     match_char('-')
-    factor
+    term
     @code_gen.pop_sub
   end
 
@@ -324,7 +324,7 @@ class Parser
     while is_add_op? @char
       @code_gen.push
       if @char == '+' then add
-      elsif  @char == '-' then subtract
+      elsif @char == '-' then subtract
       end      
     end
   end

@@ -1,11 +1,12 @@
 
 def main()
   read(n)
-  if n + 3 <= 1
+  if n <= 1
     write(1)
   else
-    i = n
-    f = 1
+    i = n + (3 * 5)
+    f = 5 - 4 * 5
+    k = 6/ 3
     while i > 1
       f = f * i
       i = i - 1
