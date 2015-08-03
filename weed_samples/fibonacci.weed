@@ -1,0 +1,22 @@
+
+def main()
+  
+  write_str("Enter the number of terms")
+  read_num(n)
+ 
+  i = 0
+  first = 0
+  second = 1
+
+  while i < n
+    if i <= 1
+      write_num(i)
+    else
+      temp = first + second
+      first = second
+      second = temp
+      write_num(temp)    
+    end
+    i = i + 1
+  end
+end

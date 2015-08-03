@@ -31,145 +31,115 @@ block
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 12 
+get_char: 12  
 get_char: 13  
-get_char: 14  
-get_char: 15 w
-get_char: 16 r
-get_char: 17 i
-get_char: 18 t
-get_char: 19 e
-get_char: 20 _
-get_char: 21 s
-get_char: 22 t
-get_char: 23 r
-get_char: 24 (
+get_char: 14 
+get_char: 15  
+get_char: 16  
+get_char: 17 w
+get_char: 18 r
+get_char: 19 i
+get_char: 20 t
+get_char: 21 e
+get_char: 22 _
+get_char: 23 s
+get_char: 24 t
+get_char: 25 r
+get_char: 26 (
 skip_white_space
 read_name token: write_str
 match_char: (
 skip_white_space
-get_char: 25 "
+get_char: 27 "
 match_char: ( - matched
 match_char: "
 skip_white_space
-get_char: 26 E
+get_char: 28 E
 match_char: " - matched
-get_char: 27 n
-get_char: 28 t
-get_char: 29 e
-get_char: 30 r
-get_char: 31  
-get_char: 32 a
+get_char: 29 n
+get_char: 30 t
+get_char: 31 e
+get_char: 32 r
 get_char: 33  
-get_char: 34 n
-get_char: 35 u
-get_char: 36 m
-get_char: 37 b
-get_char: 38 e
-get_char: 39 r
-get_char: 40  
-get_char: 41 t
-get_char: 42 o
-get_char: 43  
-get_char: 44 c
-get_char: 45 h
-get_char: 46 e
-get_char: 47 c
-get_char: 48 k
-get_char: 49  
-get_char: 50 i
-get_char: 51 f
-get_char: 52  
-get_char: 53 i
-get_char: 54 t
-get_char: 55  
-get_char: 56 i
-get_char: 57 s
-get_char: 58  
-get_char: 59 a
-get_char: 60  
-get_char: 61 p
-get_char: 62 a
-get_char: 63 l
-get_char: 64 i
-get_char: 65 n
-get_char: 66 d
-get_char: 67 r
-get_char: 68 o
-get_char: 69 m
-get_char: 70 e
-get_char: 71  
-get_char: 72 o
-get_char: 73 r
-get_char: 74  
-get_char: 75 n
-get_char: 76 o
-get_char: 77 t
-get_char: 78 \
-get_char: 79 n
-get_char: 80 "
-Enter a number to check if it is a palindrome or not\n
+get_char: 34 t
+get_char: 35 h
+get_char: 36 e
+get_char: 37  
+get_char: 38 n
+get_char: 39 u
+get_char: 40 m
+get_char: 41 b
+get_char: 42 e
+get_char: 43 r
+get_char: 44  
+get_char: 45 o
+get_char: 46 f
+get_char: 47  
+get_char: 48 t
+get_char: 49 e
+get_char: 50 r
+get_char: 51 m
+get_char: 52 s
+get_char: 53 "
+Enter the number of terms
 match_char: "
 skip_white_space
-get_char: 81 )
+get_char: 54 )
 match_char: " - matched
 match_char: )
 skip_white_space
-get_char: 82 
+get_char: 55 
 match_char: ) - matched
-								WRITE_STR Enter a number to check if it is a palindrome or not\n
+								WRITE_STR Enter the number of terms
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 83  
-get_char: 84  
-get_char: 85 r
-get_char: 86 e
-get_char: 87 a
-get_char: 88 d
-get_char: 89 _
-get_char: 90 n
-get_char: 91 u
-get_char: 92 m
-get_char: 93 (
+get_char: 56  
+get_char: 57  
+get_char: 58 r
+get_char: 59 e
+get_char: 60 a
+get_char: 61 d
+get_char: 62 _
+get_char: 63 n
+get_char: 64 u
+get_char: 65 m
+get_char: 66 (
 skip_white_space
 read_name token: read_num
 do_read_num
 read_write
 match_char: (
 skip_white_space
-get_char: 94 n
+get_char: 67 n
 match_char: ( - matched
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 95 )
+get_char: 68 )
 skip_white_space
 read_name token: n
 								READ_NUM n
 match_char: )
 skip_white_space
-get_char: 96 
+get_char: 69 
 match_char: ) - matched
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 97  
-get_char: 98 
-get_char: 99  
-get_char: 100  
-get_char: 101 t
-get_char: 102 e
-get_char: 103 m
-get_char: 104 p
-get_char: 105  
+get_char: 70  
+get_char: 71 
+get_char: 72  
+get_char: 73  
+get_char: 74 i
+get_char: 75  
 skip_white_space
-get_char: 106 =
-read_name token: temp
+get_char: 76 =
+read_name token: i
 assignment
 match_char: =
 skip_white_space
-get_char: 107  
+get_char: 77  
 match_char: = - matched
 bool_expression
 bool_term
@@ -180,69 +150,104 @@ first_term
 first_factor
 factor
 skip_white_space
-get_char: 108 n
-read_name
-read_token: Name, (?-mix:\w)
-skip_white_space
-get_char: 109 
-skip_white_space
-get_char: 110  
-get_char: 111  
-get_char: 112 r
-read_name token: n
-								MOV n,@R0
-next_term
-								MOV @R0,temp
-read_name
-read_token: Name, (?-mix:\w)
-skip_white_space
-get_char: 113 e
-get_char: 114 v
-get_char: 115 e
-get_char: 116 r
-get_char: 117 s
-get_char: 118 e
-get_char: 119  
-skip_white_space
-get_char: 120 =
-read_name token: reverse
-assignment
-match_char: =
-skip_white_space
-get_char: 121  
-match_char: = - matched
-bool_expression
-bool_term
-not_factor
-relation
-expression
-first_term
-first_factor
-factor
-skip_white_space
-get_char: 122 0
+get_char: 78 0
 read_number
 read_token: Number, (?-mix:\d)
 skip_white_space
-get_char: 123 
+get_char: 79 
 skip_white_space
-get_char: 124  
-get_char: 125 
-get_char: 126  
-get_char: 127  
-get_char: 128 w
+get_char: 80  
+get_char: 81  
+get_char: 82 f
 								MOV #0,@R0
 next_term
-								MOV @R0,reverse
+								MOV @R0,i
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 129 h
-get_char: 130 i
-get_char: 131 l
-get_char: 132 e
-get_char: 133 (
+get_char: 83 i
+get_char: 84 r
+get_char: 85 s
+get_char: 86 t
+get_char: 87  
 skip_white_space
+get_char: 88 =
+read_name token: first
+assignment
+match_char: =
+skip_white_space
+get_char: 89  
+match_char: = - matched
+bool_expression
+bool_term
+not_factor
+relation
+expression
+first_term
+first_factor
+factor
+skip_white_space
+get_char: 90 0
+read_number
+read_token: Number, (?-mix:\d)
+skip_white_space
+get_char: 91 
+skip_white_space
+get_char: 92  
+get_char: 93  
+get_char: 94 s
+								MOV #0,@R0
+next_term
+								MOV @R0,first
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 95 e
+get_char: 96 c
+get_char: 97 o
+get_char: 98 n
+get_char: 99 d
+get_char: 100  
+skip_white_space
+get_char: 101 =
+read_name token: second
+assignment
+match_char: =
+skip_white_space
+get_char: 102  
+match_char: = - matched
+bool_expression
+bool_term
+not_factor
+relation
+expression
+first_term
+first_factor
+factor
+skip_white_space
+get_char: 103 1
+read_number
+read_token: Number, (?-mix:\d)
+skip_white_space
+get_char: 104 
+skip_white_space
+get_char: 105 
+get_char: 106  
+get_char: 107  
+get_char: 108 w
+								MOV #1,@R0
+next_term
+								MOV @R0,second
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 109 h
+get_char: 110 i
+get_char: 111 l
+get_char: 112 e
+get_char: 113  
+skip_white_space
+get_char: 114 i
 read_name token: while
 do_while
 new_label
@@ -256,86 +261,53 @@ first_term
 first_factor
 factor
 skip_white_space
-match_char: (
-skip_white_space
-get_char: 134  
-match_char: ( - matched
-bool_expression
-bool_term
-not_factor
-relation
-expression
-first_term
-first_factor
-factor
-skip_white_space
-get_char: 135 t
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 136 e
-get_char: 137 m
-get_char: 138 p
-get_char: 139  
+get_char: 115  
 skip_white_space
-get_char: 140 !
-read_name token: temp
-								MOV temp,@R0
+get_char: 116 <
+read_name token: i
+								MOV i,@R0
 next_term
 								MOV @R0,-(SP)
-match_char: !
+less
+match_char: <
 skip_white_space
-get_char: 141 =
-match_char: ! - matched
-match_char: =
-skip_white_space
-get_char: 142  
-match_char: = - matched
+get_char: 117  
+match_char: < - matched
 expression
 first_term
 first_factor
 factor
 skip_white_space
-get_char: 143 0
-read_number
-read_token: Number, (?-mix:\d)
+get_char: 118 n
+read_name
+read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 144  
+get_char: 119 
 skip_white_space
-get_char: 145 )
-								MOV #0,@R0
+get_char: 120  
+get_char: 121  
+get_char: 122  
+get_char: 123  
+get_char: 124 i
+read_name token: n
+								MOV n,@R0
 next_term
-								CMP (SP)+,@R0, !=
-match_char: )
-skip_white_space
-get_char: 146 
-match_char: ) - matched
-next_term
+								CMP (SP)+,@R0, <
 								JIF L1
 block
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 147  
-get_char: 148  
-get_char: 149  
-get_char: 150  
-get_char: 151 r
-get_char: 152 e
-get_char: 153 v
-get_char: 154 e
-get_char: 155 r
-get_char: 156 s
-get_char: 157 e
-get_char: 158  
+get_char: 125 f
+get_char: 126  
 skip_white_space
-get_char: 159 =
-read_name token: reverse
-assignment
-match_char: =
-skip_white_space
-get_char: 160  
-match_char: = - matched
+get_char: 127 i
+read_name token: if
+do_if
+new_label
 bool_expression
 bool_term
 not_factor
@@ -345,62 +317,124 @@ first_term
 first_factor
 factor
 skip_white_space
-get_char: 161 r
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 162 e
-get_char: 163 v
-get_char: 164 e
-get_char: 165 r
-get_char: 166 s
-get_char: 167 e
-get_char: 168  
+get_char: 128  
 skip_white_space
-get_char: 169 *
-read_name token: reverse
-								MOV reverse,@R0
+get_char: 129 <
+read_name token: i
+								MOV i,@R0
 next_term
 								MOV @R0,-(SP)
-multiply
-match_char: *
+less
+match_char: <
 skip_white_space
-get_char: 170  
-match_char: * - matched
+get_char: 130 =
+match_char: < - matched
+match_char: =
+skip_white_space
+get_char: 131  
+match_char: = - matched
+expression
+first_term
+first_factor
 factor
 skip_white_space
-get_char: 171 1
+get_char: 132 1
 read_number
 read_token: Number, (?-mix:\d)
 skip_white_space
-get_char: 172 0
-get_char: 173 
+get_char: 133 
 skip_white_space
-get_char: 174  
-get_char: 175  
-get_char: 176  
-get_char: 177  
-get_char: 178 r
-								MOV #10,@R0
-								MUL (SP)+,@R0
-								MOV @R0,reverse
+get_char: 134  
+get_char: 135  
+get_char: 136  
+get_char: 137  
+get_char: 138  
+get_char: 139  
+get_char: 140 w
+								MOV #1,@R0
+next_term
+								CMP (SP)+,@R0, <=
+								JIF L2
+block
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 179 e
-get_char: 180 v
-get_char: 181 e
-get_char: 182 r
-get_char: 183 s
-get_char: 184 e
-get_char: 185  
+get_char: 141 r
+get_char: 142 i
+get_char: 143 t
+get_char: 144 e
+get_char: 145 _
+get_char: 146 n
+get_char: 147 u
+get_char: 148 m
+get_char: 149 (
 skip_white_space
-get_char: 186 =
-read_name token: reverse
+read_name token: write_num
+do_write_num
+read_write
+match_char: (
+skip_white_space
+get_char: 150 i
+match_char: ( - matched
+expression
+first_term
+first_factor
+factor
+skip_white_space
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 151 )
+skip_white_space
+read_name token: i
+								MOV i,@R0
+next_term
+								WRITE_NUM @R0
+match_char: )
+skip_white_space
+get_char: 152 
+match_char: ) - matched
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 153  
+get_char: 154  
+get_char: 155  
+get_char: 156  
+get_char: 157 e
+get_char: 158 l
+get_char: 159 s
+get_char: 160 e
+get_char: 161 
+skip_white_space
+get_char: 162  
+get_char: 163  
+get_char: 164  
+get_char: 165  
+get_char: 166  
+get_char: 167  
+get_char: 168 t
+read_name token: else
+new_label
+								JMP L3
+block
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 169 e
+get_char: 170 m
+get_char: 171 p
+get_char: 172  
+skip_white_space
+get_char: 173 =
+read_name token: temp
 assignment
 match_char: =
 skip_white_space
-get_char: 187  
+get_char: 174  
 match_char: = - matched
 bool_expression
 bool_term
@@ -411,82 +445,67 @@ first_term
 first_factor
 factor
 skip_white_space
-get_char: 188 r
+get_char: 175 f
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 189 e
-get_char: 190 v
-get_char: 191 e
-get_char: 192 r
-get_char: 193 s
-get_char: 194 e
-get_char: 195  
+get_char: 176 i
+get_char: 177 r
+get_char: 178 s
+get_char: 179 t
+get_char: 180  
 skip_white_space
-get_char: 196 +
-read_name token: reverse
-								MOV reverse,@R0
+get_char: 181 +
+read_name token: first
+								MOV first,@R0
 next_term
 								MOV @R0,-(SP)
 add
 match_char: +
 skip_white_space
-get_char: 197  
+get_char: 182  
 match_char: + - matched
 term
 factor
 skip_white_space
-get_char: 198 t
+get_char: 183 s
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 199 e
-get_char: 200 m
-get_char: 201 p
-get_char: 202  
+get_char: 184 e
+get_char: 185 c
+get_char: 186 o
+get_char: 187 n
+get_char: 188 d
+get_char: 189 
 skip_white_space
-get_char: 203 %
-read_name token: temp
-								MOV temp,@R0
+get_char: 190  
+get_char: 191  
+get_char: 192  
+get_char: 193  
+get_char: 194  
+get_char: 195  
+get_char: 196 f
+read_name token: second
+								MOV second,@R0
 next_term
-								MOV @R0,-(SP)
-modulus
-match_char: %
-skip_white_space
-get_char: 204  
-match_char: % - matched
-factor
-skip_white_space
-get_char: 205 1
-read_number
-read_token: Number, (?-mix:\d)
-skip_white_space
-get_char: 206 0
-get_char: 207 
-skip_white_space
-get_char: 208  
-get_char: 209  
-get_char: 210  
-get_char: 211  
-get_char: 212 t
-								MOV #10,@R0
-								MOD (SP)+, @R0
 								ADD (SP)+,@R0
-								MOV @R0,reverse
+								MOV @R0,temp
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 213 e
-get_char: 214 m
-get_char: 215 p
-get_char: 216  
+get_char: 197 i
+get_char: 198 r
+get_char: 199 s
+get_char: 200 t
+get_char: 201  
 skip_white_space
-get_char: 217 =
-read_name token: temp
+get_char: 202 =
+read_name token: first
 assignment
 match_char: =
 skip_white_space
-get_char: 218  
+get_char: 203  
 match_char: = - matched
 bool_expression
 bool_term
@@ -497,53 +516,74 @@ first_term
 first_factor
 factor
 skip_white_space
-get_char: 219 t
+get_char: 204 s
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 220 e
-get_char: 221 m
-get_char: 222 p
-get_char: 223 /
+get_char: 205 e
+get_char: 206 c
+get_char: 207 o
+get_char: 208 n
+get_char: 209 d
+get_char: 210 
 skip_white_space
-read_name token: temp
-								MOV temp,@R0
+get_char: 211  
+get_char: 212  
+get_char: 213  
+get_char: 214  
+get_char: 215  
+get_char: 216  
+get_char: 217 s
+read_name token: second
+								MOV second,@R0
 next_term
-								MOV @R0,-(SP)
-divide
-match_char: /
+								MOV @R0,first
+read_name
+read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 224 1
-match_char: / - matched
+get_char: 218 e
+get_char: 219 c
+get_char: 220 o
+get_char: 221 n
+get_char: 222 d
+get_char: 223  
+skip_white_space
+get_char: 224 =
+read_name token: second
+assignment
+match_char: =
+skip_white_space
+get_char: 225  
+match_char: = - matched
+bool_expression
+bool_term
+not_factor
+relation
+expression
+first_term
+first_factor
 factor
 skip_white_space
-read_number
-read_token: Number, (?-mix:\d)
-skip_white_space
-get_char: 225 0
-get_char: 226 
-skip_white_space
-get_char: 227  
-get_char: 228  
-get_char: 229 e
-								MOV #10,@R0
-								DIV (SP)+, @R0
-								MOV @R0,temp
+get_char: 226 t
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 230 n
-get_char: 231 d
-get_char: 232 
+get_char: 227 e
+get_char: 228 m
+get_char: 229 p
+get_char: 230 
 skip_white_space
+get_char: 231  
+get_char: 232  
 get_char: 233  
-get_char: 234 
+get_char: 234  
 get_char: 235  
 get_char: 236  
 get_char: 237 w
-read_name token: end
-match_string end
-								JMP L0
+read_name token: temp
+								MOV temp,@R0
+next_term
+								MOV @R0,second
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
@@ -562,7 +602,7 @@ do_write_num
 read_write
 match_char: (
 skip_white_space
-get_char: 247 n
+get_char: 247 t
 match_char: ( - matched
 expression
 first_term
@@ -572,30 +612,54 @@ skip_white_space
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 248 )
+get_char: 248 e
+get_char: 249 m
+get_char: 250 p
+get_char: 251 )
 skip_white_space
-read_name token: n
-								MOV n,@R0
+read_name token: temp
+								MOV temp,@R0
 next_term
 								WRITE_NUM @R0
 match_char: )
 skip_white_space
-get_char: 249 
+get_char: 252  
 match_char: ) - matched
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 250 
-get_char: 251  
-get_char: 252  
-get_char: 253 i
-get_char: 254 f
+get_char: 253  
+get_char: 254  
 get_char: 255  
+get_char: 256 
+get_char: 257  
+get_char: 258  
+get_char: 259  
+get_char: 260  
+get_char: 261 e
+get_char: 262 n
+get_char: 263 d
+get_char: 264 
 skip_white_space
-get_char: 256 n
-read_name token: if
-do_if
-new_label
+get_char: 265  
+get_char: 266  
+get_char: 267  
+get_char: 268  
+get_char: 269 i
+read_name token: end
+match_string end
+read_name
+read_token: Name, (?-mix:\w)
+skip_white_space
+get_char: 270  
+skip_white_space
+get_char: 271 =
+read_name token: i
+assignment
+match_char: =
+skip_white_space
+get_char: 272  
+match_char: = - matched
 bool_expression
 bool_term
 not_factor
@@ -605,207 +669,55 @@ first_term
 first_factor
 factor
 skip_white_space
+get_char: 273 i
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 257  
+get_char: 274  
 skip_white_space
-get_char: 258 =
-read_name token: n
-								MOV n,@R0
+get_char: 275 +
+read_name token: i
+								MOV i,@R0
 next_term
 								MOV @R0,-(SP)
-match_char: =
+add
+match_char: +
 skip_white_space
-get_char: 259 =
-match_char: = - matched
-match_char: =
-skip_white_space
-get_char: 260  
-match_char: = - matched
-expression
-first_term
-first_factor
+get_char: 276  
+match_char: + - matched
+term
 factor
 skip_white_space
-get_char: 261 r
-read_name
-read_token: Name, (?-mix:\w)
+get_char: 277 1
+read_number
+read_token: Number, (?-mix:\d)
 skip_white_space
-get_char: 262 e
-get_char: 263 v
-get_char: 264 e
-get_char: 265 r
-get_char: 266 s
-get_char: 267 e
-get_char: 268 
+get_char: 278 
 skip_white_space
-get_char: 269  
-get_char: 270  
-get_char: 271  
-get_char: 272  
-get_char: 273 w
-read_name token: reverse
-								MOV reverse,@R0
+get_char: 279  
+get_char: 280  
+get_char: 281 e
+								MOV #1,@R0
 next_term
-								CMP (SP)+,@R0, ==
-								JIF L2
-block
+								ADD (SP)+,@R0
+								MOV @R0,i
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 274 r
-get_char: 275 i
-get_char: 276 t
-get_char: 277 e
-get_char: 278 _
-get_char: 279 s
-get_char: 280 t
-get_char: 281 r
-get_char: 282 (
+get_char: 282 n
+get_char: 283 d
+get_char: 284 
 skip_white_space
-read_name token: write_str
-match_char: (
-skip_white_space
-get_char: 283 "
-match_char: ( - matched
-match_char: "
-skip_white_space
-get_char: 284  
-match_char: " - matched
-get_char: 285 i
-get_char: 286 s
-get_char: 287  
-get_char: 288 a
-get_char: 289  
-get_char: 290 p
-get_char: 291 a
-get_char: 292 l
-get_char: 293 i
-get_char: 294 n
-get_char: 295 d
-get_char: 296 r
-get_char: 297 o
-get_char: 298 m
-get_char: 299 e
-get_char: 300  
-get_char: 301 n
-get_char: 302 u
-get_char: 303 m
-get_char: 304 b
-get_char: 305 e
-get_char: 306 r
-get_char: 307 "
- is a palindrome number
-match_char: "
-skip_white_space
-get_char: 308 )
-match_char: " - matched
-match_char: )
-skip_white_space
-get_char: 309 
-match_char: ) - matched
-								WRITE_STR  is a palindrome number
-read_name
-read_token: Name, (?-mix:\w)
-skip_white_space
-get_char: 310  
-get_char: 311  
-get_char: 312 e
-get_char: 313 l
-get_char: 314 s
-get_char: 315 e
-get_char: 316 
-skip_white_space
-get_char: 317  
-get_char: 318  
-get_char: 319  
-get_char: 320  
-get_char: 321 w
-read_name token: else
-new_label
-								JMP L3
-block
-read_name
-read_token: Name, (?-mix:\w)
-skip_white_space
-get_char: 322 r
-get_char: 323 i
-get_char: 324 t
-get_char: 325 e
-get_char: 326 _
-get_char: 327 s
-get_char: 328 t
-get_char: 329 r
-get_char: 330 (
-skip_white_space
-read_name token: write_str
-match_char: (
-skip_white_space
-get_char: 331 "
-match_char: ( - matched
-match_char: "
-skip_white_space
-get_char: 332  
-match_char: " - matched
-get_char: 333 i
-get_char: 334 s
-get_char: 335  
-get_char: 336 n
-get_char: 337 o
-get_char: 338 t
-get_char: 339  
-get_char: 340 a
-get_char: 341  
-get_char: 342 p
-get_char: 343 a
-get_char: 344 l
-get_char: 345 i
-get_char: 346 n
-get_char: 347 d
-get_char: 348 r
-get_char: 349 o
-get_char: 350 m
-get_char: 351 e
-get_char: 352  
-get_char: 353 n
-get_char: 354 u
-get_char: 355 m
-get_char: 356 b
-get_char: 357 e
-get_char: 358 r
-get_char: 359 "
- is not a palindrome number
-match_char: "
-skip_white_space
-get_char: 360 )
-match_char: " - matched
-match_char: )
-skip_white_space
-get_char: 361 
-match_char: ) - matched
-								WRITE_STR  is not a palindrome number
-read_name
-read_token: Name, (?-mix:\w)
-skip_white_space
-get_char: 362  
-get_char: 363  
-get_char: 364 e
-get_char: 365 n
-get_char: 366 d
-get_char: 367  
-skip_white_space
-get_char: 368  
-get_char: 369 
-get_char: 370 e
+get_char: 285 e
 read_name token: end
 match_string end
+								JMP L0
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 371 n
-get_char: 372 d
-get_char: 373 
+get_char: 286 n
+get_char: 287 d
+get_char: 288 
 skip_white_space
 read_name token: end
 match_string end
