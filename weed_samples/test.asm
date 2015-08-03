@@ -18,6 +18,12 @@ L2:
 	MOV @R0,-(SP)
 	MOV #1,@R0
 	CMP (SP)+,@R0, >
+	MOV @R0,-(SP)
+	MOV #3,@R0
+	MOV @R0,-(SP)
+	MOV #6,@R0
+	CMP (SP)+,@R0, <
+	AND (SP)+,@R0
 	JIF L3
 	MOV f,@R0
 	MOV @R0,-(SP)

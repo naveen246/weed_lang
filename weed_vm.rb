@@ -54,8 +54,8 @@ class VM
 
   def parse_and_exec(instr)
     @log.write("parse_and_exec " + instr)
-    instr_set = ["CMP", "JIF", "MOV", "RET", "MUL", "DIV", "MOD", "ADD", "SUB", "POW", "JMP", "READ_STR", 
-      "READ_NUM", "WRITE_STR", "WRITE_NUM"]
+    instr_set = ["CMP", "JIF", "MOV", "RET", "MUL", "DIV", "MOD", "ADD", "SUB", "POW", "AND", "OR", "NOT", "NEG",
+     "JMP", "READ_STR", "READ_NUM", "WRITE_STR", "WRITE_NUM"]
     instr_set.each do |item|
       if instr.include? item
         @log.write(item)
