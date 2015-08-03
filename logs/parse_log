@@ -197,26 +197,29 @@ get_char: 62 n
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 63  
+get_char: 63 
 skip_white_space
-get_char: 64 +
+get_char: 64  
+get_char: 65  
+get_char: 66  
+get_char: 67  
+get_char: 68 f
 read_name token: n
 								MOV n,@R0
 next_term
-								MOV @R0,-(SP)
-add
-match_char: +
+								MOV @R0,i
+read_name
+read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 65  
-match_char: + - matched
-term
-factor
+get_char: 69  
 skip_white_space
-get_char: 66 (
-match_char: (
+get_char: 70 =
+read_name token: f
+assignment
+match_char: =
 skip_white_space
-get_char: 67 3
-match_char: ( - matched
+get_char: 71  
+match_char: = - matched
 bool_expression
 bool_term
 not_factor
@@ -226,174 +229,30 @@ first_term
 first_factor
 factor
 skip_white_space
+get_char: 72 1
 read_number
 read_token: Number, (?-mix:\d)
-skip_white_space
-get_char: 68  
-skip_white_space
-get_char: 69 *
-								MOV #3,@R0
-next_term
-								MOV @R0,-(SP)
-multiply
-match_char: *
-skip_white_space
-get_char: 70  
-match_char: * - matched
-factor
-skip_white_space
-get_char: 71 5
-read_number
-read_token: Number, (?-mix:\d)
-skip_white_space
-get_char: 72 )
-skip_white_space
-								MOV #5,@R0
-								MUL (SP)+,@R0
-match_char: )
 skip_white_space
 get_char: 73 
-match_char: ) - matched
-next_term
-								ADD (SP)+,@R0
-								MOV @R0,i
-read_name
-read_token: Name, (?-mix:\w)
 skip_white_space
 get_char: 74  
 get_char: 75  
 get_char: 76  
 get_char: 77  
-get_char: 78 f
-get_char: 79  
-skip_white_space
-get_char: 80 =
-read_name token: f
-assignment
-match_char: =
-skip_white_space
-get_char: 81  
-match_char: = - matched
-bool_expression
-bool_term
-not_factor
-relation
-expression
-first_term
-first_factor
-factor
-skip_white_space
-get_char: 82 5
-read_number
-read_token: Number, (?-mix:\d)
-skip_white_space
-get_char: 83  
-skip_white_space
-get_char: 84 -
-								MOV #5,@R0
+get_char: 78 w
+								MOV #1,@R0
 next_term
-								MOV @R0,-(SP)
-subtract
-match_char: -
-skip_white_space
-get_char: 85  
-match_char: - - matched
-term
-factor
-skip_white_space
-get_char: 86 4
-read_number
-read_token: Number, (?-mix:\d)
-skip_white_space
-get_char: 87  
-skip_white_space
-get_char: 88 *
-								MOV #4,@R0
-next_term
-								MOV @R0,-(SP)
-multiply
-match_char: *
-skip_white_space
-get_char: 89  
-match_char: * - matched
-factor
-skip_white_space
-get_char: 90 5
-read_number
-read_token: Number, (?-mix:\d)
-skip_white_space
-get_char: 91 
-skip_white_space
-get_char: 92  
-get_char: 93  
-get_char: 94  
-get_char: 95  
-get_char: 96 k
-								MOV #5,@R0
-								MUL (SP)+,@R0
-								SUB (SP)+,@R0
 								MOV @R0,f
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 97  
+get_char: 79 h
+get_char: 80 i
+get_char: 81 l
+get_char: 82 e
+get_char: 83  
 skip_white_space
-get_char: 98 =
-read_name token: k
-assignment
-match_char: =
-skip_white_space
-get_char: 99  
-match_char: = - matched
-bool_expression
-bool_term
-not_factor
-relation
-expression
-first_term
-first_factor
-factor
-skip_white_space
-get_char: 100 6
-read_number
-read_token: Number, (?-mix:\d)
-skip_white_space
-get_char: 101 /
-skip_white_space
-								MOV #6,@R0
-next_term
-								MOV @R0,-(SP)
-divide
-match_char: /
-skip_white_space
-get_char: 102  
-match_char: / - matched
-factor
-skip_white_space
-get_char: 103 3
-read_number
-read_token: Number, (?-mix:\d)
-skip_white_space
-get_char: 104 
-skip_white_space
-get_char: 105  
-get_char: 106  
-get_char: 107  
-get_char: 108  
-get_char: 109 w
-								MOV #3,@R0
-								DIV (SP)+, @R0
-								MOV @R0,k
-read_name
-read_token: Name, (?-mix:\w)
-skip_white_space
-get_char: 110 h
-get_char: 111 i
-get_char: 112 l
-get_char: 113 e
-get_char: 114  
-skip_white_space
-get_char: 115 i
+get_char: 84 i
 read_name token: while
 do_while
 new_label
@@ -410,9 +269,9 @@ skip_white_space
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 116  
+get_char: 85  
 skip_white_space
-get_char: 117 >
+get_char: 86 >
 read_name token: i
 								MOV i,@R0
 next_term
@@ -420,26 +279,26 @@ next_term
 greater
 match_char: >
 skip_white_space
-get_char: 118  
+get_char: 87  
 match_char: > - matched
 expression
 first_term
 first_factor
 factor
 skip_white_space
-get_char: 119 1
+get_char: 88 1
 read_number
 read_token: Number, (?-mix:\d)
 skip_white_space
-get_char: 120 
+get_char: 89 
 skip_white_space
-get_char: 121  
-get_char: 122  
-get_char: 123  
-get_char: 124  
-get_char: 125  
-get_char: 126  
-get_char: 127 f
+get_char: 90  
+get_char: 91  
+get_char: 92  
+get_char: 93  
+get_char: 94  
+get_char: 95  
+get_char: 96 f
 								MOV #1,@R0
 next_term
 								CMP (SP)+,@R0, >
@@ -448,14 +307,14 @@ block
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 128  
+get_char: 97  
 skip_white_space
-get_char: 129 =
+get_char: 98 =
 read_name token: f
 assignment
 match_char: =
 skip_white_space
-get_char: 130  
+get_char: 99  
 match_char: = - matched
 bool_expression
 bool_term
@@ -466,13 +325,13 @@ first_term
 first_factor
 factor
 skip_white_space
-get_char: 131 f
+get_char: 100 f
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 132  
+get_char: 101  
 skip_white_space
-get_char: 133 *
+get_char: 102 *
 read_name token: f
 								MOV f,@R0
 next_term
@@ -480,23 +339,23 @@ next_term
 multiply
 match_char: *
 skip_white_space
-get_char: 134  
+get_char: 103  
 match_char: * - matched
 factor
 skip_white_space
-get_char: 135 i
+get_char: 104 i
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 136 
+get_char: 105 
 skip_white_space
-get_char: 137  
-get_char: 138  
-get_char: 139  
-get_char: 140  
-get_char: 141  
-get_char: 142  
-get_char: 143 i
+get_char: 106  
+get_char: 107  
+get_char: 108  
+get_char: 109  
+get_char: 110  
+get_char: 111  
+get_char: 112 i
 read_name token: i
 								MOV i,@R0
 								MUL (SP)+,@R0
@@ -504,14 +363,14 @@ read_name token: i
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 144  
+get_char: 113  
 skip_white_space
-get_char: 145 =
+get_char: 114 =
 read_name token: i
 assignment
 match_char: =
 skip_white_space
-get_char: 146  
+get_char: 115  
 match_char: = - matched
 bool_expression
 bool_term
@@ -522,13 +381,13 @@ first_term
 first_factor
 factor
 skip_white_space
-get_char: 147 i
+get_char: 116 i
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 148  
+get_char: 117  
 skip_white_space
-get_char: 149 -
+get_char: 118 -
 read_name token: i
 								MOV i,@R0
 next_term
@@ -536,22 +395,22 @@ next_term
 subtract
 match_char: -
 skip_white_space
-get_char: 150  
+get_char: 119  
 match_char: - - matched
 term
 factor
 skip_white_space
-get_char: 151 1
+get_char: 120 1
 read_number
 read_token: Number, (?-mix:\d)
 skip_white_space
-get_char: 152 
+get_char: 121 
 skip_white_space
-get_char: 153  
-get_char: 154  
-get_char: 155  
-get_char: 156  
-get_char: 157 e
+get_char: 122  
+get_char: 123  
+get_char: 124  
+get_char: 125  
+get_char: 126 e
 								MOV #1,@R0
 next_term
 								SUB (SP)+,@R0
@@ -559,33 +418,33 @@ next_term
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 158 n
-get_char: 159 d
-get_char: 160 
+get_char: 127 n
+get_char: 128 d
+get_char: 129 
 skip_white_space
-get_char: 161  
-get_char: 162  
-get_char: 163  
-get_char: 164  
-get_char: 165 w
+get_char: 130  
+get_char: 131  
+get_char: 132  
+get_char: 133  
+get_char: 134 w
 read_name token: end
 match_string end
 								JMP L2
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 166 r
-get_char: 167 i
-get_char: 168 t
-get_char: 169 e
-get_char: 170 (
+get_char: 135 r
+get_char: 136 i
+get_char: 137 t
+get_char: 138 e
+get_char: 139 (
 skip_white_space
 read_name token: write
 do_write
 read_write
 match_char: (
 skip_white_space
-get_char: 171 f
+get_char: 140 f
 match_char: ( - matched
 expression
 first_term
@@ -595,7 +454,7 @@ skip_white_space
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 172 )
+get_char: 141 )
 skip_white_space
 read_name token: f
 								MOV f,@R0
@@ -603,29 +462,29 @@ next_term
 								WRITE_NUM @R0
 match_char: )
 skip_white_space
-get_char: 173 
+get_char: 142 
 match_char: ) - matched
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 174  
-get_char: 175  
-get_char: 176 e
-get_char: 177 n
-get_char: 178 d
-get_char: 179 
+get_char: 143  
+get_char: 144  
+get_char: 145 e
+get_char: 146 n
+get_char: 147 d
+get_char: 148 
 skip_white_space
-get_char: 180 e
+get_char: 149 e
 read_name token: end
 match_string end
 read_name
 read_token: Name, (?-mix:\w)
 skip_white_space
-get_char: 181 n
-get_char: 182 d
-get_char: 183 
+get_char: 150 n
+get_char: 151 d
+get_char: 152 
 skip_white_space
-get_char: 184 
+get_char: 153 
 read_name token: end
 match_string end
 								END

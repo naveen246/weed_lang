@@ -1,0 +1,142 @@
+{"DEF_MAIN"=>1, "L0"=>11, "L2"=>16, "L3"=>33, "L1"=>36}
+step_through
+parse_and_exec 	READ_NUM n
+READ_NUM
+parse_and_exec 	MOV n,@R0
+MOV
+parse_and_exec 	MOV @R0,-(SP)
+MOV
+parse_and_exec 	MOV #1,@R0
+MOV
+parse_and_exec 	CMP (SP)+,@R0, <=
+CMP
+cmp 4 <= 1
+false
+parse_and_exec 	JIF L0
+JIF
+parse_and_exec 	MOV n,@R0
+MOV
+parse_and_exec 	MOV @R0,i
+MOV
+parse_and_exec 	MOV #1,@R0
+MOV
+parse_and_exec 	MOV @R0,f
+MOV
+parse_and_exec 	MOV i,@R0
+MOV
+parse_and_exec 	MOV @R0,-(SP)
+MOV
+parse_and_exec 	MOV #1,@R0
+MOV
+parse_and_exec 	CMP (SP)+,@R0, >
+CMP
+cmp 4 > 1
+true
+parse_and_exec 	JIF L3
+JIF
+parse_and_exec 	MOV f,@R0
+MOV
+parse_and_exec 	MOV @R0,-(SP)
+MOV
+parse_and_exec 	MOV i,@R0
+MOV
+parse_and_exec 	MUL (SP)+,@R0
+MUL
+parse_and_exec 	MOV @R0,f
+MOV
+parse_and_exec 	MOV i,@R0
+MOV
+parse_and_exec 	MOV @R0,-(SP)
+MOV
+parse_and_exec 	MOV #1,@R0
+MOV
+parse_and_exec 	SUB (SP)+,@R0
+SUB
+parse_and_exec 	MOV @R0,i
+MOV
+parse_and_exec 	JMP L2
+JMP
+parse_and_exec 	MOV i,@R0
+MOV
+parse_and_exec 	MOV @R0,-(SP)
+MOV
+parse_and_exec 	MOV #1,@R0
+MOV
+parse_and_exec 	CMP (SP)+,@R0, >
+CMP
+cmp 3 > 1
+true
+parse_and_exec 	JIF L3
+JIF
+parse_and_exec 	MOV f,@R0
+MOV
+parse_and_exec 	MOV @R0,-(SP)
+MOV
+parse_and_exec 	MOV i,@R0
+MOV
+parse_and_exec 	MUL (SP)+,@R0
+MUL
+parse_and_exec 	MOV @R0,f
+MOV
+parse_and_exec 	MOV i,@R0
+MOV
+parse_and_exec 	MOV @R0,-(SP)
+MOV
+parse_and_exec 	MOV #1,@R0
+MOV
+parse_and_exec 	SUB (SP)+,@R0
+SUB
+parse_and_exec 	MOV @R0,i
+MOV
+parse_and_exec 	JMP L2
+JMP
+parse_and_exec 	MOV i,@R0
+MOV
+parse_and_exec 	MOV @R0,-(SP)
+MOV
+parse_and_exec 	MOV #1,@R0
+MOV
+parse_and_exec 	CMP (SP)+,@R0, >
+CMP
+cmp 2 > 1
+true
+parse_and_exec 	JIF L3
+JIF
+parse_and_exec 	MOV f,@R0
+MOV
+parse_and_exec 	MOV @R0,-(SP)
+MOV
+parse_and_exec 	MOV i,@R0
+MOV
+parse_and_exec 	MUL (SP)+,@R0
+MUL
+parse_and_exec 	MOV @R0,f
+MOV
+parse_and_exec 	MOV i,@R0
+MOV
+parse_and_exec 	MOV @R0,-(SP)
+MOV
+parse_and_exec 	MOV #1,@R0
+MOV
+parse_and_exec 	SUB (SP)+,@R0
+SUB
+parse_and_exec 	MOV @R0,i
+MOV
+parse_and_exec 	JMP L2
+JMP
+parse_and_exec 	MOV i,@R0
+MOV
+parse_and_exec 	MOV @R0,-(SP)
+MOV
+parse_and_exec 	MOV #1,@R0
+MOV
+parse_and_exec 	CMP (SP)+,@R0, >
+CMP
+cmp 1 > 1
+false
+parse_and_exec 	JIF L3
+JIF
+parse_and_exec 	MOV f,@R0
+MOV
+parse_and_exec 	WRITE_NUM @R0
+WRITE_NUM

@@ -3,11 +3,12 @@ require_relative 'log'
 
 class VM
   :state
-  ACC = "@ACC"
+  ACC = "@R0"
   def initialize
     @reg = {}
     @global_vars = {}
     @local_vars = {}
+    @fn_stack = []
     @stack = []
     @labels = {}
     @program_counter
@@ -84,6 +85,7 @@ class VM
     value = get_val(params[0])
     destn = params[1]
     destn.include?("@") ? @reg[destn] = value : @local_vars[destn] = value
+    @stack.push(value) if destn.downcase.include?("(sp)")
     @program_counter += 1
   end
 
@@ -118,6 +120,28 @@ class VM
 
   def pow(params)
     math_op(params, "**")
+  end
+
+  def and(params)
+    first_val = get_val(params[0])
+    second_val = get_val(params[1])
+    @reg[ACC] = eval("#{first_val} && #{second_val}")
+    @program_counter += 1
+  end
+
+  def or(params)
+    first_val = get_val(params[0])
+    second_val = get_val(params[1])
+    @reg[ACC] = eval("#{first_val} || #{second_val}")
+    @program_counter += 1
+  end
+
+  def not(params)
+    @reg[params[0]] = !get_val(params[0])
+  end
+
+  def neg(params)
+    @reg[params[0]] = -get_val(params[0])
   end
 
   def jmp(params)
@@ -156,7 +180,9 @@ class VM
       @reg[str]
     elsif str.include? "#"
       str.slice! "#"
-      str  
+      str
+    elsif str.downcase.include? "(sp)"
+      @stack.pop
     else
       @local_vars[str]
     end
@@ -167,15 +193,15 @@ class VM
   end
 
   def save_state
-    @stack << @local_vars << @program_counter + 1 << :state.to_s
-    @log.write("save_state " + @stack.to_s)
+    @fn_stack << @local_vars << @program_counter + 1 << :state.to_s
+    @log.write("save_state " + @fn_stack.to_s)
   end
   
   def pop_stack
-    last_state_index = @stack.rindex(:state.to_s)
-    @stack.slice!(last_state_index..@stack.size)
-    @program_counter = @stack.pop
-    @local_vars = @stack.pop
-    @log.write("pop_stack " + @stack.to_s)
+    last_state_index = @fn_stack.rindex(:state.to_s)
+    @fn_stack.slice!(last_state_index..@fn_stack.size)
+    @program_counter = @fn_stack.pop
+    @local_vars = @fn_stack.pop
+    @log.write("pop_stack " + @fn_stack.to_s)
   end
 end
