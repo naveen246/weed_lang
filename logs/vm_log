@@ -8,7 +8,7 @@ parse_and_exec 	MOV n,@R0
 MOV
 parse_and_exec 	MOV @R0,temp
 MOV
-parse_and_exec 	MOV #1,@R0
+parse_and_exec 	MOV #0,@R0
 MOV
 parse_and_exec 	MOV @R0,reverse
 MOV
@@ -20,107 +20,7 @@ parse_and_exec 	MOV #0,@R0
 MOV
 parse_and_exec 	CMP (SP)+,@R0, !=
 CMP
-cmp 12321 != 0
-true
-parse_and_exec 	JIF L1
-JIF
-parse_and_exec 	MOV reverse,@R0
-MOV
-parse_and_exec 	MOV @R0,-(SP)
-MOV
-parse_and_exec 	MOV #10,@R0
-MOV
-parse_and_exec 	MUL (SP)+,@R0
-MUL
-parse_and_exec 	MOV @R0,reverse
-MOV
-parse_and_exec 	MOV reverse,@R0
-MOV
-parse_and_exec 	MOV @R0,-(SP)
-MOV
-parse_and_exec 	MOV temp,@R0
-MOV
-parse_and_exec 	MOV @R0,-(SP)
-MOV
-parse_and_exec 	MOV #10,@R0
-MOV
-parse_and_exec 	MOD (SP)+, @R0
-MOD
-parse_and_exec 	ADD (SP)+,@R0
-ADD
-parse_and_exec 	MOV @R0,reverse
-MOV
-parse_and_exec 	MOV temp,@R0
-MOV
-parse_and_exec 	MOV @R0,-(SP)
-MOV
-parse_and_exec 	MOV #10,@R0
-MOV
-parse_and_exec 	DIV (SP)+, @R0
-DIV
-parse_and_exec 	MOV @R0,temp
-MOV
-parse_and_exec 	JMP L0
-JMP
-parse_and_exec 	MOV temp,@R0
-MOV
-parse_and_exec 	MOV @R0,-(SP)
-MOV
-parse_and_exec 	MOV #0,@R0
-MOV
-parse_and_exec 	CMP (SP)+,@R0, !=
-CMP
-cmp 1232 != 0
-true
-parse_and_exec 	JIF L1
-JIF
-parse_and_exec 	MOV reverse,@R0
-MOV
-parse_and_exec 	MOV @R0,-(SP)
-MOV
-parse_and_exec 	MOV #10,@R0
-MOV
-parse_and_exec 	MUL (SP)+,@R0
-MUL
-parse_and_exec 	MOV @R0,reverse
-MOV
-parse_and_exec 	MOV reverse,@R0
-MOV
-parse_and_exec 	MOV @R0,-(SP)
-MOV
-parse_and_exec 	MOV temp,@R0
-MOV
-parse_and_exec 	MOV @R0,-(SP)
-MOV
-parse_and_exec 	MOV #10,@R0
-MOV
-parse_and_exec 	MOD (SP)+, @R0
-MOD
-parse_and_exec 	ADD (SP)+,@R0
-ADD
-parse_and_exec 	MOV @R0,reverse
-MOV
-parse_and_exec 	MOV temp,@R0
-MOV
-parse_and_exec 	MOV @R0,-(SP)
-MOV
-parse_and_exec 	MOV #10,@R0
-MOV
-parse_and_exec 	DIV (SP)+, @R0
-DIV
-parse_and_exec 	MOV @R0,temp
-MOV
-parse_and_exec 	JMP L0
-JMP
-parse_and_exec 	MOV temp,@R0
-MOV
-parse_and_exec 	MOV @R0,-(SP)
-MOV
-parse_and_exec 	MOV #0,@R0
-MOV
-parse_and_exec 	CMP (SP)+,@R0, !=
-CMP
-cmp 123 != 0
+cmp 121 != 0
 true
 parse_and_exec 	JIF L1
 JIF
@@ -286,9 +186,11 @@ parse_and_exec 	MOV reverse,@R0
 MOV
 parse_and_exec 	CMP (SP)+,@R0, ==
 CMP
-cmp 12321 == 112321
-false
+cmp 121 == 121
+true
 parse_and_exec 	JIF L2
 JIF
-parse_and_exec 	WRITE_STR  is not a palindrome number
+parse_and_exec 	WRITE_STR  is a palindrome number
 WRITE_STR
+parse_and_exec 	JMP L3
+JMP

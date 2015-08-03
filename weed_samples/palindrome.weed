@@ -5,7 +5,7 @@ def main()
   read_num(n)
  
   temp = n
-  reverse = 1
+  reverse = 0
  
   while( temp != 0 )
     reverse = reverse * 10

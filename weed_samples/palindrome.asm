@@ -3,7 +3,7 @@ DEF_MAIN:
 	READ_NUM n
 	MOV n,@R0
 	MOV @R0,temp
-	MOV #1,@R0
+	MOV #0,@R0
 	MOV @R0,reverse
 L0:
 	MOV temp,@R0

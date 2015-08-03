@@ -220,7 +220,7 @@ first_term
 first_factor
 factor
 skip_white_space
-get_char: 122 1
+get_char: 122 0
 read_number
 read_token: Number, (?-mix:\d)
 skip_white_space
@@ -231,7 +231,7 @@ get_char: 125
 get_char: 126  
 get_char: 127  
 get_char: 128 w
-								MOV #1,@R0
+								MOV #0,@R0
 next_term
 								MOV @R0,reverse
 read_name
